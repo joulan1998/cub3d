@@ -2,9 +2,9 @@ EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c li
 BASIC_SRC = $(EXECUTION_SRC)
 
 OBJ = ${BASIC_SRC:.c=.o}
-CFLAG = -I ./minilibx-linux -g
+CFLAG = -I ./minilibx-linux
 # -Wall -Wextra -Werror# -g -fsanitize=address -Imlx
-NAME = cub3D
+NAME = cub
 
 CC = cc
 
