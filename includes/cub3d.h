@@ -4,14 +4,22 @@
 #include <libc.h>
 // #include "../minilibx-linux/mlx.h"
 #include <mlx.h>
+
+// #define PALEYR_X    
+#define WALL        1
 #define ONE         1
 #define ZERO        0
+#define PLAYER      2
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
 #define TILE_SIZE  40
+// #define HALF_TILE_SIZE  20
+#define HALF_TILE_SIZE  TILE_SIZE/2
 #define RED         0xff0000
 #define GREEN       0x00FF00
 #define BLUE        0x0000FF
+#define BLACK       0x000000
+#define PURPLE       0xffffff
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
