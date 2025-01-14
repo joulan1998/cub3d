@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "includes/cub3d.h"
-int check_wall(int y, int x, int map[MAP_HEIGHT][MAP_WIDTH])
+int check_wall(int y, int x, char **map)
 {
     // int local_x = x*TILE_SIZE;
     // while ((local_x%TILE_SIZE))
@@ -11,22 +11,22 @@ int check_wall(int y, int x, int map[MAP_HEIGHT][MAP_WIDTH])
     return((map[y][x] == WALL));
 }
 
-void draw_ray_up(void *mlx , void *win, int y ,int x,int color, int map[MAP_HEIGHT][MAP_WIDTH])
+void draw_ray_up(void *mlx , void *win, int y ,int x,int color, char **map)
 {
-    int i = 1;
+    int i = 0;
     int cor = y;
 
     // while (i < TILE_SIZE + 40)
-    while (i)
+    while (1)
     {
     //     printf("the result ot the YYYYYY piosition is %d\n",((y)/*/TILE_SIZE)- HALF_TILE_SIZE*/));
     //     printf("the result ot the XXXXXX piosition is %d\n",((x)/*/TILE_SIZE)- HALF_TILE_SIZE*/));
     //     printf("the result ot the plaeyr piosition is %c\n",map[(y/TILE_SIZE)- HALF_TILE_SIZE][(x/TILE_SIZE)- HALF_TILE_SIZE]);
     //     exit(1);
 
-        if (!(cor%TILE_SIZE) && check_wall(cor/TILE_SIZE, x/TILE_SIZE,map))
+        if (!(cor%TILE_SIZE) && check_wall((cor/TILE_SIZE)-1, x/TILE_SIZE,map))
         {
-            // printf("the result ot the x piosition is %d\n",x/TILE_SIZE);
+            // printf("the result ot the x piosition is %d\n",cor/TILE_SIZE);
             // exit(9);
             return;
         }
@@ -109,46 +109,55 @@ char **reading_map(int fd)
         readen =  read(fd, buffer,10);
     }
     // puts(total);
-    puts("*********");
+    // puts("*********");
     return(ft_split(total, '\n'));
 }
 
-// void initialize_data(t_cub *data,char *map)
-// {
-//     data->map_height = count_lines(map);
-//     data->map_width = ft_strlen(map[data->map_height]);
-//     data-> = ft_strlen(map[data->map_height]);
-//     data->map_width = ft_strlen(map[data->map_height]);
-
-
-// }
+void initialize_data(t_cub *data,char **map)
+{
+    data->map_height = count_lines(map);
+    data->map_width = ft_strlen(map[data->map_height]);
+}
 
 int main()
 {
+    t_player *player;
+    t_cub *data;
     int player_x;
     int player_y;
     int my_y= 0;
     int my_x= 0;
-    // char **map;
     int i = 0;
     int fd;
     void *mlx;
     void *win;
-    int map[7][9] = {
-        {1,1,1,1,1,1,1,1,1},
-        {1,0,0,0,0,0,0,0,1},
-        {1,0,0,0,1,0,0,0,1},
-        {1,0,1,1,1,1,1,0,1},
-        {1,0,0,0,1,0,0,0,1},
-        {1,0,0,0,0,0,2,0,1},
-        {1,1,1,1,1,1,1,1,1},
-    };
-    // fd = open("./map.txt",O_RDONLY,0);
-    // map = reading_map(fd);
+    char **map;
+    // int map[MAP_HEIGHT][MAP_WIDTH] = {
+    //     {1,1,1,1,1,1,1,1,1},
+    //     {1,0,0,0,0,0,0,0,1},
+    //     {1,0,0,0,1,0,0,0,1},
+    //     {1,0,1,1,1,1,1,0,1},
+    //     {1,0,0,0,1,0,0,0,1},
+    //     {1,0,0,0,0,0,0,2,1},
+    //     {1,1,1,1,1,1,1,1,1},
+    // };
+    fd = open("./map.txt",O_RDONLY,0);
+    map = reading_map(fd);
+    // initialize_data(data,map);
+    // int u = 0;
+    // while (u < MAP_HEIGHT)
+    //     puts(map[u++]);
+    // exit(9);
     // initialise_data(&data, map);
 
+    // puts(player->map[1]);
+    // player.map = map_handling(map);
+    // exit(4);
     mlx = mlx_init();
     win = mlx_new_window(mlx, (MAP_WIDTH * TILE_SIZE),(MAP_HEIGHT * TILE_SIZE), "cub3D");
+    player->map = map;
+    player->mlx = mlx;
+    player->win = win;
     while(my_y < MAP_HEIGHT)
     {
         my_x = 0;
@@ -156,12 +165,14 @@ int main()
         {
             // printf("the valur is %d\n",map[my_y][my_x]);
             // exit(8);
-            if (map[my_y][my_x] == ONE)
+            if (player->map[my_y][my_x] == WALL)
                 draw_squar(mlx,win, (my_y * TILE_SIZE), (my_x * TILE_SIZE),RED,TILE_SIZE,0);
-            else if (map[my_y][my_x] == ZERO)
+            else if (map[my_y][my_x] == FLOOR)
                 draw_squar(mlx, win, (my_y * TILE_SIZE),(my_x * TILE_SIZE),GREEN,TILE_SIZE,0);
             else if (map[my_y][my_x] == PLAYER)
             {
+                player->player_y = my_y;
+                player->player_x = my_x;
                 player_x = my_x;
                 player_y = my_y;
                 draw_squar(mlx, win, (my_y * TILE_SIZE), (my_x * TILE_SIZE),GREEN,TILE_SIZE,1);
@@ -170,9 +181,13 @@ int main()
         }
         my_y++;
     }
+    // data->player = player;
+    player->data = data;
+    player->map = map;
     draw_player(mlx,win,(player_y * TILE_SIZE + HALF_TILE_SIZE),(player_x * TILE_SIZE + HALF_TILE_SIZE),BLACK,5);
     draw_ray_up(mlx,win,(player_y * TILE_SIZE + HALF_TILE_SIZE),(player_x * TILE_SIZE + HALF_TILE_SIZE),BLACK,map);
     // mlx_string_put( mlx, win, 70, 70, RED, "test printing" );
+    mlx_key_hook(player->win,move_player,player);
 	mlx_loop(mlx);
     return(0);
 }

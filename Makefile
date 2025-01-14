@@ -1,4 +1,4 @@
-EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c
+EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c moves.c map_handling.c
 BASIC_SRC = $(EXECUTION_SRC)
 
 OBJ = ${BASIC_SRC:.c=.o}

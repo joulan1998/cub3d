@@ -4,12 +4,14 @@
 #include <libc.h>
 // #include "../minilibx-linux/mlx.h"
 #include <mlx.h>
-
+#include <math.h>
+typedef struct s_cub t_cub;
 // #define PALEYR_X    
-#define WALL        1
-#define ONE         1
-#define ZERO        0
-#define PLAYER      2
+#define WALL        '1'
+#define FLOOR        '0'
+#define ONE         '1'
+#define ZERO        '0'
+#define PLAYER      'N'
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
 #define TILE_SIZE  40
@@ -32,15 +34,34 @@ int		is_number(char *str);
 int		ft_atoi(const char *str);
 
 
-// typedef struct s_cub
-// {
-//     void *mlx;
-//     void *win;
-//     int win_height;
-//     int win_height;
-//     int map_height;
-//     int map_width;
-// } t_cub;
+
+typedef struct s_player
+{
+    void *mlx;
+    void *win;
+    char **map;
+    // int mapp[MAP_HEIGHT][MAP_WIDTH];
+    // int (*map)[MAP_HEIGHT][MAP_WIDTH];
+    int player_y;
+    int player_x;
+    t_cub *data;
+} t_player;
+
+typedef struct s_cub
+{
+    void *mlx;
+    void *win;
+    char **map;
+    int map_height;
+    int map_width;
+    t_player *player;
+} t_cub;
+// ***********************************************************************
+
+int move_player(int keycode, t_player *player);
+int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
+void draw_squar(void *mlx , void *win, int y ,int x,int color,int size, int exist);
+// ***********************************************************************
 
 int count_lines(char **map);
 
