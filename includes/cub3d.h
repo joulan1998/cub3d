@@ -33,13 +33,49 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		is_number(char *str);
 int		ft_atoi(const char *str);
 
+typedef  struct  s_line
+{
+	float  x; //the x coordinate of line relative to screen
+	int  y; //the current pixel index of the line (along y axis)
+	int  y0; //y start index of drawing texture
+	int  y1; //y end index of drawing texture
+	int  tex_x; //x coordinate of texture to draw
+	int  tex_y; //y coordinate of texture to draw
+} t_line;
 
-
+typedef struct s_ray
+{
+    int index;
+    void *mlx;
+    void *win;
+    char **map;
+    int stepX;
+    int stepY;
+    int mapX;
+    int mapY;
+    // int mapp[MAP_HEIGHT][MAP_WIDTH];
+    // int (*map)[MAP_HEIGHT][MAP_WIDTH];
+    int player_y;
+    int player_x;
+    double sideDistX;
+    double RayDirx;
+    double RayDiry;
+    double deltaDistX;
+    double deltaDistY;
+    double sideDisty;
+    int hit ;
+    int side ; // could be EAST or WEST depenfding if it 0 or 1
+    double perpWallDist;
+    
+    // t_ray   *next;
+} t_ray;
 typedef struct s_player
 {
     void *mlx;
     void *win;
     char **map;
+    int MapX ;
+    int MapY ;
     // int mapp[MAP_HEIGHT][MAP_WIDTH];
     // int (*map)[MAP_HEIGHT][MAP_WIDTH];
     int player_y;
@@ -61,6 +97,8 @@ typedef struct s_cub
 int move_player(int keycode, t_player *player);
 int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
 void draw_squar(void *mlx , void *win, int y ,int x,int color,int size, int exist);
+void draw_ray_up(void *mlx , void *win, int y ,int x,int color, char **map);
+void    ray_casting(void *mlx, void *win, char **map,t_player *player);
 // ***********************************************************************
 
 int count_lines(char **map);
