@@ -5,6 +5,7 @@
 // #include "../minilibx-linux/mlx.h"
 #include <mlx.h>
 #include <math.h>
+#include <stdbool.h>
 typedef struct s_cub t_cub;
 // #define PALEYR_X    
 #define WALL        '1'
@@ -12,6 +13,9 @@ typedef struct s_cub t_cub;
 #define ONE         '1'
 #define ZERO        '0'
 #define PLAYER      'N'
+#define FOV         60 * (M_PI / 180)
+#define WALL_STRIPE  1
+#define NUM_RAYS    (MAP_WITH*TILE_SIZE) / WALL_STRIPE
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
 #define TILE_SIZE  40
@@ -45,27 +49,15 @@ typedef  struct  s_line
 
 typedef struct s_ray
 {
-    int index;
-    void *mlx;
-    void *win;
-    char **map;
-    int stepX;
-    int stepY;
-    int mapX;
-    int mapY;
-    // int mapp[MAP_HEIGHT][MAP_WIDTH];
-    // int (*map)[MAP_HEIGHT][MAP_WIDTH];
-    int player_y;
-    int player_x;
-    double sideDistX;
-    double RayDirx;
-    double RayDiry;
-    double deltaDistX;
-    double deltaDistY;
-    double sideDisty;
-    int hit ;
-    int side ; // could be EAST or WEST depenfding if it 0 or 1
-    double perpWallDist;
+    float rayAngle;
+    int wallHitX;
+    int wallHitY;
+    int distance;
+    int facingDown;
+    int facingUp;
+    int facingRight;
+    int facingLeft;
+
     
     // t_ray   *next;
 } t_ray;
@@ -76,29 +68,38 @@ typedef struct s_player
     char **map;
     int MapX ;
     int MapY ;
+    float rotationAngle;
     // int mapp[MAP_HEIGHT][MAP_WIDTH];
     // int (*map)[MAP_HEIGHT][MAP_WIDTH];
     int player_y;
     int player_x;
-    t_cub *data;
+    t_cub *root;
 } t_player;
 
-typedef struct s_cub
+typedef struct s_root
 {
     void *mlx;
     void *win;
     char **map;
-    int map_height;
-    int map_width;
+    int map_h;
+    int win_w;
+    int win_h;
+    int map_w;
     t_player *player;
-} t_cub;
+} t_root;
 // ***********************************************************************
 
-int move_player(int keycode, t_player *player);
+void    parsing(t_root *root);
+void initialize_data(t_root **root,char ***map,t_player **player);
+char **reading_map(int fd);
+int move_player(int keycode, t_root *root);
 int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
-void draw_squar(void *mlx , void *win, int y ,int x,int color,int size, int exist);
-void draw_ray_up(void *mlx , void *win, int y ,int x,int color, char **map);
+void draw_squar(t_root * root, int y ,int x,int color,int size, int exist);
+void draw_circle(t_root *root, int center_x, int center_y, int color, int radius);
+void draw_ray_up(t_root *root, int y ,int x,int color, char **map);
 void    ray_casting(void *mlx, void *win, char **map,t_player *player);
+void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color);
+void cast_allRays(t_player *player);
 // ***********************************************************************
 
 int count_lines(char **map);

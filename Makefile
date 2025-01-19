@@ -1,8 +1,8 @@
-EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c moves.c map_handling.c ray_casting.c
+EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c moves.c map_handling.c ray_casting.c draw_cercle.c reading_map.c initialize_data.c parsing.c
 BASIC_SRC = $(EXECUTION_SRC)
 
 OBJ = ${BASIC_SRC:.c=.o}
-CFLAG = -I ./minilibx-linux -g
+CFLAG = -I ./minilibx-linux -g -O0
 # -Wall -Wextra -Werror# -g -fsanitize=address -Imlx
 NAME = cub
 
