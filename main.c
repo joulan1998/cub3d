@@ -32,30 +32,21 @@ void draw_ray_up(t_root *root, int y ,int x,int color, char **map)
     }
 
 }
-// void draw_player(void *mlx , void *win, int y ,int x,int color,int size)
+// void set_player(t_player *p)
 // {
-//     int my_y = y;
-//     int my_x = x;
-//     while(y < (my_y+size))
-//     {
-//         x = my_x;
-//         while (x < (my_x+size))
-//         {
-//             mlx_pixel_put(mlx, win,x++,y, color);
-//             x++;
-//         }
-//         y++;
-//     }
+//     p->player_x = 0;
+//     p->player_x = 0;
+//     p->turnDir = 0;
+//     p->walkDir = 0;
+//     p->rotationAngle = M_PI /2;
+//     p->walkSpeed = 
+
 // }
 
 int main()
 {
     t_player *player;
     t_root *root;
-    int player_x;
-    int player_y;
-    int my_y= 0;
-    int my_x= 0;
     int i = 0;
     int fd;
     void *mlx;
@@ -65,6 +56,7 @@ int main()
 
     fd = open("./map.txt",O_RDONLY,0);
     map = reading_map(fd);
+    // set_player(player);       //TODO
     initialize_data(&root,&map,&player);
     parsing(root);
 

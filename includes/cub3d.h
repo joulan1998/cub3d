@@ -13,7 +13,7 @@ typedef struct s_cub t_cub;
 #define ONE         '1'
 #define ZERO        '0'
 #define PLAYER      'N'
-#define FOV         60 * (M_PI / 180)
+#define FOV         (60 * (M_PI / 180))
 #define WALL_STRIPE  1
 #define NUM_RAYS    (MAP_WITH*TILE_SIZE) / WALL_STRIPE
 #define MAP_WIDTH   9
@@ -69,11 +69,13 @@ typedef struct s_player
     int MapX ;
     int MapY ;
     float rotationAngle;
-    // int mapp[MAP_HEIGHT][MAP_WIDTH];
-    // int (*map)[MAP_HEIGHT][MAP_WIDTH];
     int player_y;
     int player_x;
-    t_cub *root;
+    int turnDir;
+    int walkDir;
+    int turnSpeed;
+    int walkSpeed;
+
 } t_player;
 
 typedef struct s_root

@@ -79,27 +79,27 @@ void cast(int columnid , t_player *player,t_ray *ray)
         // printf("**the y of the wall is %d<<<<<<<\n",nextHtouchY);
         // printf("** xstep =  %d\n",xstep);
         // printf("** ystep =  %d\n",ystep);i
-        if (player->map[nextHtouchY/40][nextHtouchX/40] > FLOOR)
-        {
-            foundHWallHit = true;
-            wallhitX = nextHtouchX;
-            wallhitY = nextHtouchY;
-            printf("the xstep is %d\n",xstep);
-            printf("the y0step is %d\n",ystep);
-            // draw_line(player->mlx, player->win,player->player_y*40,player->player_y*40,wallhitY *40,wallhitX*40,RED);
-            puts("before");
-            // draw_line(player->mlx, player->win,player->player_y*40,player->player_y*40,0,0,RED);
-            return;
-            puts("after");
-        printf("$$$$$$$$$$$$$$$$$$$$$$$$$$%d\n",foundHWallHit);
-            // exit(17);
-            break;
-        }
-        else
-        {
-            nextHtouchX += xstep;
-            nextHtouchY += ystep;
-        }
+        // if (player->map[nextHtouchY/40][nextHtouchX/40] > FLOOR)
+        // {
+        //     foundHWallHit = true;
+        //     wallhitX = nextHtouchX;
+        //     wallhitY = nextHtouchY;
+        //     printf("the xstep is %d\n",xstep);
+        //     printf("the y0step is %d\n",ystep);
+        //     // draw_line(player->mlx, player->win,player->player_y*40,player->player_y*40,wallhitY *40,wallhitX*40,RED);
+        //     puts("before");
+        //     // draw_line(player->mlx, player->win,player->player_y*40,player->player_y*40,0,0,RED);
+        //     return;
+        //     puts("after");
+        // printf("$$$$$$$$$$$$$$$$$$$$$$$$$$%d\n",foundHWallHit);
+        //     // exit(17);
+        //     break;
+        // }
+        // else
+        // {
+        //     nextHtouchX += xstep;
+        //     nextHtouchY += ystep;
+        // }
         // exit(66);
     }
 }
