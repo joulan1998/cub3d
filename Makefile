@@ -2,7 +2,8 @@ EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c li
 BASIC_SRC = $(EXECUTION_SRC)
 
 OBJ = ${BASIC_SRC:.c=.o}
-CFLAG = -I ./minilibx-linux -g -O0
+CFLAG =  -g 
+# CFLAG = /*-Imlx*/ MLX -g 
 # -Wall -Wextra -Werror# -g -fsanitize=address -Imlx
 NAME = cub
 
@@ -16,7 +17,7 @@ $(NAME): $(OBJ)
 
 
 %.o: %.c
-		@${CC} ${CFLAG} -c $< -o $@
+		@${CC} ${CFLAG} -I ./MLX -c $< -o $@
 
 norm :
 	@norminette

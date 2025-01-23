@@ -2,8 +2,9 @@
 #define CUB3D_H
 
 #include <libc.h>
-// #include "../minilibx-linux/mlx.h"
-#include <mlx.h>
+#include "../MLX/mlx.h"
+
+// #include <mlx.h>
 #include <math.h>
 #include <stdbool.h>
 typedef struct s_cub t_cub;
@@ -92,7 +93,7 @@ typedef struct s_root
 // ***********************************************************************
 
 void    parsing(t_root *root);
-void initialize_data(t_root **root,char ***map,t_player **player);
+void initialize_data(t_root *root,char ***map,t_player **player);
 char **reading_map(int fd);
 int move_player(int keycode, t_root *root);
 int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);

@@ -38,7 +38,7 @@ void set_player(t_player *p)
     p->player_x = 0;
     p->turnDir = 0;
     p->walkDir = 0;
-    p->rotationAngle = M_PI /2;
+    p->rotationAngle = M_PI / 2;
     p->walkSpeed = 100;
     p->turnSpeed = 45 * (M_PI / 180);
 }
@@ -52,17 +52,22 @@ int main()
     void *mlx;
     void *win;
     char **map;
-    player = malloc(sizeof(t_player *));
+    player = malloc(sizeof(t_player));
 
+    root = malloc(sizeof(t_root));
     fd = open("./map.txt",O_RDONLY,0);
     map = reading_map(fd);
+    // int u = 0;
+    // while (map[u])
+    //     puts(map[u++]);
     set_player(player);
-    initialize_data(&root,&map,&player);
+    initialize_data(root,&map,&player);
     parsing(root);
+    // exit(11);
 
     player->rotationAngle = (M_PI / 2)* -1;
     // player->root = root;
-    // player->map = map;
+    player->map = map;
     // cast_allRays(player);
     // draw_line(mlx,win,0 ,0,800,800,BLACK);
     // draw_player(mlx,win,(player_y * TILE_SIZE + HALF_TILE_SIZE),(player_x * TILE_SIZE + HALF_TILE_SIZE),BLACK,5);

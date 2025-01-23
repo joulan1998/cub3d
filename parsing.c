@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:21:43 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/23 15:22:44 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:32:09 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,6 @@ void   parsing(t_root *root)
         }
         my_y++;
     }
+    draw_circle(root,(root->player->player_y*TILE_SIZE)+20,(root->player->player_x*TILE_SIZE)+20,BLACK,5);
+    draw_line(root,(root->player->player_y)*40+20, (root->player->player_x)*40+20,(root->player->player_y*40) + (cos(root->player->rotationAngle))*40,(root->player->player_x *40) + (sin(root->player->rotationAngle))*40, BLACK);
 }

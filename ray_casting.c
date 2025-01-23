@@ -50,7 +50,7 @@ void cast(int columnid , t_player *player,t_ray *ray)
 
     // printf("**the player_x is %d\n",player->player_x);
     // printf("**the player_y is %d\n",player->player_y);
-    printf("**the ray_angle is %d\n",ray->rayAngle);
+    // printf("**the ray_angle is %d\n",ray->rayAngle);
     printf("**********************************\n");
     xintesept = player->player_x + (yintesept - player->player_y) / tan(ray->rayAngle);
     ystep = TILE_SIZE;
@@ -106,6 +106,10 @@ void cast(int columnid , t_player *player,t_ray *ray)
 // void draw_line(t_data *data, t_vector start, t_vector end, int color)
 void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color)
 {
+    // printf("x_start =%d\n",start_x);
+    // printf("y_start =%d\n",start_y);
+    // printf("x_end =%d\n",end_x);
+    // printf("y_end =%d\n",end_y);
     int i;
     double x = end_x - start_x;
     double y = end_y - start_y;

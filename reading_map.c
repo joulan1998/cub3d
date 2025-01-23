@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:57:48 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/19 15:58:26 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:34:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char **reading_map(int fd)
     if (!buffer)
         return NULL;
 
-    char *total = malloc(1);
+    char *total = malloc(100);
     if (!total)
     {
         free(buffer);
