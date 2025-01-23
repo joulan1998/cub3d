@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:21:43 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/21 18:53:59 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:22:44 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void   parsing(t_root *root)
     int my_y = 0;
     int my_x = 0;
 
+    if (!root->map)
+        exit(puts("map error !!!!"));
     while(my_y < root->map_h)
     {
         my_x = 0;

@@ -32,16 +32,16 @@ void draw_ray_up(t_root *root, int y ,int x,int color, char **map)
     }
 
 }
-// void set_player(t_player *p)
-// {
-//     p->player_x = 0;
-//     p->player_x = 0;
-//     p->turnDir = 0;
-//     p->walkDir = 0;
-//     p->rotationAngle = M_PI /2;
-//     p->walkSpeed = 
-
-// }
+void set_player(t_player *p)
+{
+    p->player_x = 0;
+    p->player_x = 0;
+    p->turnDir = 0;
+    p->walkDir = 0;
+    p->rotationAngle = M_PI /2;
+    p->walkSpeed = 100;
+    p->turnSpeed = 45 * (M_PI / 180);
+}
 
 int main()
 {
@@ -56,11 +56,11 @@ int main()
 
     fd = open("./map.txt",O_RDONLY,0);
     map = reading_map(fd);
-    // set_player(player);       //TODO
+    set_player(player);
     initialize_data(&root,&map,&player);
     parsing(root);
 
-    player->rotationAngle = M_PI / 2;
+    player->rotationAngle = (M_PI / 2)* -1;
     // player->root = root;
     // player->map = map;
     // cast_allRays(player);
