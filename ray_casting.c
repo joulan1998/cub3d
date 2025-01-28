@@ -1,16 +1,16 @@
 #include "../includes/cub3d.h"
-int normalizeAngle(float angle)
-{
-    int res;
-    res = fmod(angle,(M_PI * 2));
-    printf("the vlue if anggle is %f\n",angle);
-    printf("the vlue if angle after is %d\n",res);
-    if (res < 0)
-        res = (2 * M_PI) + res;
-    printf("the vlue if angle after is >>>>>>%d\n",res);
-    // exit(10);
-    return (res);
-}
+// int normalizeAngle(float angle)
+// {
+//     int res;
+//     res = fmod(angle,(M_PI * 2));
+//     printf("the vlue if anggle is %f\n",angle);
+//     printf("the vlue if angle after is %d\n",res);
+//     if (res < 0)
+//         res = (2 * M_PI) + res;
+//     printf("the vlue if angle after is >>>>>>%d\n",res);
+//     // exit(10);
+//     return (res);
+// }
 t_ray *create_ray(float rayAngle)
 {
     t_ray *res;
@@ -24,7 +24,7 @@ t_ray *create_ray(float rayAngle)
     res->facingUp = !res->facingDown;
     res->facingRight = (rayAngle > (0.5 * M_PI) || rayAngle > (1.5 * M_PI));
     res->facingLeft = !res->facingRight;
-    printf("the niramalzed value is %f\n",res->rayAngle);
+    // printf("the niramalzed value is %f\n",res->rayAngle);
     // exit(9);
     return(res);
 }
@@ -42,7 +42,7 @@ void cast(int columnid , t_player *player,t_ray *ray)
     int wallhitX = 0;
     int wallhitY = 0;
 
-    yintesept = floor(player->player_y);
+    yintesept = floor(*player->player_y);
     if (ray->facingDown)
         yintesept += TILE_SIZE;
     else 
@@ -52,7 +52,7 @@ void cast(int columnid , t_player *player,t_ray *ray)
     // printf("**the player_y is %d\n",player->player_y);
     // printf("**the ray_angle is %d\n",ray->rayAngle);
     printf("**********************************\n");
-    xintesept = player->player_x + (yintesept - player->player_y) / tan(ray->rayAngle);
+    xintesept = *player->player_x + (yintesept - *player->player_y) / tan(ray->rayAngle);
     ystep = TILE_SIZE;
     if (ray->facingUp)
         ystep *= -1;
@@ -119,8 +119,9 @@ void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, i
     x = start_x;
     y = start_y;
 
-    for (i = 0; i < length; i += 1) {
-        mlx_pixel_put(root->mlx,root->win,(int)round(x), (int)round(y),color );
+    for (i = 0; i < length; i += 1)
+    {
+        my_mlx_pixel_put(&root->mlx_img, (int)round(x), (int)round(y), color);
         x += addx;
         y += addy;
     }
@@ -155,27 +156,27 @@ void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, i
 
 // }
 
-void cast_allRays(t_player *player)
-{
-    int i =0;
-    int columnid = 0;
-    float     ray_angle = player->rotationAngle - (FOV / 2);
-    // exit(28);
-    // while (i < (60/(7*40)))
-    while (i < 1)
-    {
-        printf("&&&&&&&&&&the ray angle is %f\n",ray_angle);
-        // exit(9);
-        // t_ray *ray =  create_ray(8.554545);
-        t_ray *ray =  create_ray(ray_angle);
-        cast(columnid,player,ray);
-        ray_angle += FOV/(60/40);
-        columnid++;
-        printf("&&&&&&&&&&the ray angle is %f\n",ray_angle);
-        // exit(78);
-    }
+// void cast_allRays(t_player *player)
+// {
+//     int i =0;
+//     int columnid = 0;
+//     float     ray_angle = player->rotationAngle - (FOV / 2);
+//     // exit(28);
+//     // while (i < (60/(7*40)))
+//     while (i < 1)
+//     {
+//         printf("&&&&&&&&&&the ray angle is %f\n",ray_angle);
+//         // exit(9);
+//         // t_ray *ray =  create_ray(8.554545);
+//         t_ray *ray =  create_ray(ray_angle);
+//         cast(columnid,player,ray);
+//         ray_angle += FOV/(60/40);
+//         columnid++;
+//         printf("&&&&&&&&&&the ray angle is %f\n",ray_angle);
+//         // exit(78);
+//     }
     
-}
+// }
 // }
 // void cast_allRays(t_player *player)
 // {

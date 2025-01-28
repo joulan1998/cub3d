@@ -20,13 +20,17 @@ typedef struct s_cub t_cub;
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
 #define TILE_SIZE  40
+#define WIN_MLX_W  1920
+#define WIN_MLX_H  1080
 // #define HALF_TILE_SIZE  20
 #define HALF_TILE_SIZE  TILE_SIZE/2
 #define RED         0xff0000
 #define GREEN       0x00FF00
 #define BLUE        0x0000FF
 #define BLACK       0x000000
+#define WHITE       0xffffff
 #define PURPLE       0xffffff
+#define YELLOW       0xffff00
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
@@ -51,15 +55,15 @@ typedef  struct  s_line
 typedef struct s_ray
 {
     float rayAngle;
-    int wallHitX;
-    int wallHitY;
-    int distance;
-    int facingDown;
+    float wallHitX;
+    float wallHitY;
+    float distance;
+    int WasHitVertical;
     int facingUp;
+    int facingDown;
     int facingRight;
     int facingLeft;
-
-    
+    int wallhircontent;
     // t_ray   *next;
 } t_ray;
 typedef struct s_player
@@ -70,8 +74,8 @@ typedef struct s_player
     int MapX ;
     int MapY ;
     float rotationAngle;
-    int player_y;
-    int player_x;
+    int *player_y;
+    int *player_x;
     int turnDir;
     int walkDir;
     int turnSpeed;
@@ -79,10 +83,19 @@ typedef struct s_player
 
 } t_player;
 
+typedef struct    s_mlx {
+    void    *img;
+    char    *addr;
+    int        bits_per_pixel;
+    int        line_length;
+    int        endian;
+} t_mlx;
+
 typedef struct s_root
 {
     void *mlx;
     void *win;
+    t_mlx mlx_img;
     char **map;
     int map_h;
     int win_w;
@@ -93,7 +106,7 @@ typedef struct s_root
 // ***********************************************************************
 
 void    parsing(t_root *root);
-void initialize_data(t_root *root,char ***map,t_player **player);
+void initialize_data(t_root *root,char ***map,t_player *player);
 char **reading_map(int fd);
 int move_player(int keycode, t_root *root);
 int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
@@ -102,7 +115,17 @@ void draw_circle(t_root *root, int center_x, int center_y, int color, int radius
 void draw_ray_up(t_root *root, int y ,int x,int color, char **map);
 void    ray_casting(void *mlx, void *win, char **map,t_player *player);
 void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color);
-void cast_allRays(t_player *player);
+void render_player(t_root *root);
+void    my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void update(t_root **root);
+void render_map(t_root  *root);
+void render_dir(t_root *root);
+int maphaswallat(t_root *root, float y, float x);
+void castallrays(t_root    *root);
+t_ray *create_ray(float rayAngle);
+void cast_allRays(t_root    *root);
+void cast_ray(t_root *root,t_ray *ray,int rayangle, int i);
+float normalizeAngle(float angle);
 // ***********************************************************************
 
 int count_lines(char **map);
