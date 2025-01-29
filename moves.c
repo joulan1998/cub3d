@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/27 16:53:40 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:56:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void move_left(t_root *root)
     int current_tile_y = *root->player->player_y / 40;
     int current_tile_x = *root->player->player_x / 40;
 
-    if ((*root->player->player_x/* - 10*/) / 40 == current_tile_x &&
+    if ((*root->player->player_x) / 40 == current_tile_x &&
         root->map[current_tile_y][current_tile_x - 1] == FLOOR)
     {
         root->map[current_tile_y][current_tile_x] = FLOOR;

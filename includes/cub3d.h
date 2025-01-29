@@ -16,7 +16,8 @@ typedef struct s_cub t_cub;
 #define PLAYER      'N'
 #define FOV         (60 * (M_PI / 180))
 #define WALL_STRIPE  1
-#define NUM_RAYS    (MAP_WITH*TILE_SIZE) / WALL_STRIPE
+// #define MAP_WIDTH     16
+#define NUM_RAYS    (MAP_WIDTH*TILE_SIZE) / WALL_STRIPE
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
 #define TILE_SIZE  40
@@ -41,6 +42,12 @@ int		ft_isdigit(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		is_number(char *str);
 int		ft_atoi(const char *str);
+
+typedef  struct  s_pos
+{
+    float    x_pos;
+    float   y_pos;
+}   t_pos;
 
 typedef  struct  s_line
 {
@@ -102,6 +109,7 @@ typedef struct s_root
     int win_h;
     int map_w;
     t_player *player;
+    t_ray   *ray;
 } t_root;
 // ***********************************************************************
 
@@ -124,7 +132,7 @@ int maphaswallat(t_root *root, float y, float x);
 void castallrays(t_root    *root);
 t_ray *create_ray(float rayAngle);
 void cast_allRays(t_root    *root);
-void cast_ray(t_root *root,t_ray *ray,int rayangle, int i);
+void cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
 float normalizeAngle(float angle);
 // ***********************************************************************
 
