@@ -1,4 +1,5 @@
-EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c moves.c map_handling.c ray_casting.c draw_cercle.c reading_map.c initialize_data.c parsing.c render_player.c mlx_funcs.c render_map.c cast.c
+EXECUTION_SRC = main.c libft/ft_strlen.c libft/ft_strdup.c libft/ft_strjoin.c libft/ft_split.c count_lines.c moves.c map_handling.c ray_casting.c draw_cercle.c reading_map.c initialize_data.c parsing.c render_player.c mlx_funcs.c render_map.c cast.c\
+				rendring_walls.c
 BASIC_SRC = $(EXECUTION_SRC)
 
 OBJ = ${BASIC_SRC:.c=.o}
@@ -14,6 +15,8 @@ all : ${NAME}
 $(NAME): $(OBJ) 
 		${CC} ${CFLAG} ${OBJ} -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
+run: $(NAME)
+	./$(NAME)
 
 %.o: %.c
 		@${CC} ${CFLAG} -I ./MLX -c $< -o $@

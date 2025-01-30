@@ -20,6 +20,7 @@ typedef struct s_cub t_cub;
 #define NUM_RAYS    (MAP_WIDTH*TILE_SIZE) / WALL_STRIPE
 #define MAP_WIDTH   9
 #define MAP_HEIGHT  7
+
 #define TILE_SIZE  40
 #define WIN_MLX_W  1920
 #define WIN_MLX_H  1080
@@ -42,6 +43,7 @@ int		ft_isdigit(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		is_number(char *str);
 int		ft_atoi(const char *str);
+
 
 typedef  struct  s_pos
 {
@@ -132,10 +134,12 @@ int maphaswallat(t_root *root, float y, float x);
 void castallrays(t_root    *root);
 t_ray *create_ray(float rayAngle);
 void cast_allRays(t_root    *root);
-void cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
+t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
 float normalizeAngle(float angle);
+void render_wall(t_root * root, t_ray *ray, int strip_id);
 // ***********************************************************************
 
 int count_lines(char **map);
+
 
 #endif

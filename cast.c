@@ -1,7 +1,7 @@
 #include "includes/cub3d.h"
-void render_ray(t_root *root)
+void render_ray(t_root *root, t_ray *ray)
 {
-    draw_line(root,*root->player->player_y,*root->player->player_x, root->ray->wallHitY, root->ray->wallHitX,GREEN);
+    draw_line(root,*root->player->player_y,*root->player->player_x, ray->wallHitY, ray->wallHitX,GREEN);
 }
 // int distane_to_wall_temp(float x1, float y1, float x2, float y2)
 int distane_to_wall_temp(t_pos *pos1, t_pos *pos2)
@@ -153,7 +153,7 @@ t_pos *create_pos()
 //     return(res);
 // }
 
-void cast_ray(t_root *root, t_ray *ray, float rayangle, int stripid)
+t_ray *cast_ray(t_root *root, t_ray *ray, float rayangle, int stripid)
 {
     rayangle = normalizeAngle(rayangle);
 
@@ -253,19 +253,33 @@ void cast_ray(t_root *root, t_ray *ray, float rayangle, int stripid)
     ray->facingRight = facingRight;
     ray->facingLeft = facingLeft;
 
-    render_ray(root); // Render the ray for visualization
+    render_ray(root, ray); // Render the ray for visualization
+    return(ray);
 }
 
-void cast_allRays(t_root    *root)
+void cast_allRays(t_root *root)
 {
     float rayangle = root->player->rotationAngle - (FOV / 2);
-    int i = 0;
-    root->ray = create_ray(root->player->rotationAngle);
-    while (i < NUM_RAYS)
+    t_ray rays[NUM_RAYS];  // Create an array to store each ray's info
+
+    for (int i = 0; i < NUM_RAYS; i++)
     {
-        cast_ray(root, root->ray, rayangle, i);
-        rayangle += FOV / NUM_RAYS;
-        i++;
+        cast_ray(root, &rays[i], rayangle, i);  // Compute raycast for this stripe
+        // render_wall(root, &rays[i], i);         // Render the corresponding wall
+        rayangle += FOV / NUM_RAYS;             // Increment ray angle
     }
-    
 }
+
+// void cast_allRays(t_root    *root)
+// {
+//     float rayangle = root->player->rotationAngle - (FOV / 2);
+//     int i = 0;
+//     root->ray = create_ray(root->player->rotationAngle);
+//     while (i < NUM_RAYS)
+//     {
+//         render_wall(root,cast_ray(root, root->ray, rayangle, i));
+//         rayangle += FOV / NUM_RAYS;
+//         i++;
+//     }
+    
+// }

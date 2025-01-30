@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/29 14:56:29 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:06:46 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,24 @@ void move_down(t_root *root)
 
 void move_right(t_root *root)
 {
-    if (!root || !root->player || !root->player->player_x || !root->player->player_y)
-        return;
     root->player->rotationAngle -= root->player->turnDir * root->player->turnSpeed;
-    root->player->turnDir = +1;
+    float movestep = root->player->walkDir * root->player->walkSpeed * 0.2;
 
-    float direction_line_y = *root->player->player_y + sin(root->player->rotationAngle) * 40; // 40 for TILE_SIZE length
-    float direction_line_x = *root->player->player_x + cos(root->player->rotationAngle) * 40;
+    int current_tile_y = *root->player->player_y / 40;
+    int current_tile_x = *root->player->player_x / 40;
+
+    if ((*root->player->player_x) / 40 == current_tile_x &&
+        root->map[current_tile_y][current_tile_x + 1] == FLOOR)
+    {
+        root->map[current_tile_y][current_tile_x] = FLOOR;
+        root->map[current_tile_y][*root->player->player_x / 40] = PLAYER;
+        root->player->turnDir = 1;
+    }
+
+    float new_y = *root->player->player_y + sin(root->player->rotationAngle) * movestep;
+    float new_x = *root->player->player_x + cos(root->player->rotationAngle) * movestep;
 }
+
 
 void move_left(t_root *root)
 {
