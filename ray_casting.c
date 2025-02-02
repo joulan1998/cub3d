@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:56:47 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/29 14:58:33 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:15:45 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,37 @@
 
 t_ray *create_ray(float rayAngle)
 {
-    t_ray *res;
+	t_ray *res;
 
-    res = malloc(sizeof(t_ray ));
-
-    res->rayAngle= normalizeAngle(rayAngle);
-    res->distance=0;
-    res->wallHitX=0;
-    res->facingDown = (rayAngle >0 && rayAngle < M_PI);
-    res->facingUp = !res->facingDown;
-    res->facingRight = (rayAngle > (0.5 * M_PI) || rayAngle > (1.5 * M_PI));
-    res->facingLeft = !res->facingRight;
-    return(res);
+	res = malloc(sizeof(t_ray ));
+	if (!res)
+		return (NULL);
+	res->rayAngle= normalizeAngle(rayAngle);
+	res->distance = 0;
+	res->wallHitX = 0;
+	res->facingDown = (rayAngle >0 && rayAngle < M_PI);
+	res->facingUp = !res->facingDown;
+	res->facingRight = (rayAngle > (0.5 * M_PI) || rayAngle > (1.5 * M_PI));
+	res->facingLeft = !res->facingRight;
+	return(res);
 }
 
 void draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color)
 {
 
-    int i;
-    double x = end_x - start_x;
-    double y = end_y - start_y;
-    double length = sqrt(x * x + y * y);
-    double addx = x / length;
-    double addy = y / length;
-    x = start_x;
-    y = start_y;
+	int i;
+	double x = end_x - start_x;
+	double y = end_y - start_y;
+	double length = sqrt(x * x + y * y);
+	double addx = x / length;
+	double addy = y / length;
+	x = start_x;
+	y = start_y;
 
-    for (i = 0; i < length; i += 1)
-    {
-        my_mlx_pixel_put(&root->mlx_img, (int)round(x), (int)round(y), color);
-        x += addx;
-        y += addy;
-    }
+	for (i = 0; i < length; i += 1)
+	{
+		my_mlx_pixel_put(&root->mlx_img, (int)round(x), (int)round(y), color);
+		x += addx;
+		y += addy;
+	}
 }

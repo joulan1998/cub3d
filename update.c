@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_player.c                                    :+:      :+:    :+:   */
+/*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 18:38:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 17:11:25 by ael-garr         ###   ########.fr       */
+/*   Created: 2025/02/02 17:03:29 by ael-garr          #+#    #+#             */
+/*   Updated: 2025/02/02 17:16:40 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-void render_player(t_root *root)
-{
-	draw_circle(root, *(root->player->player_y) * SCALE, *(root->player->player_x) * SCALE , RED, 2);
+void update(t_root **root)
+{   
+	render_map(*root);
+	render_dir(*root);
+	render_player(*root);
+	cast_allRays(*root);
+	mini_map(root);
+	mlx_put_image_to_window((*root)->mlx, (*root)->win, (*root)->mlx_img.img,0 ,0);
 }

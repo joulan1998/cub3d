@@ -16,12 +16,13 @@ typedef struct s_cub t_cub;
 #define PLAYER      'N'
 #define FOV         (60 * (M_PI / 180))
 #define WALL_STRIPE  1
+#define SCALE  0.3
 // #define MAP_WIDTH     16
-#define NUM_RAYS    (MAP_WIDTH*TILE_SIZE) / WALL_STRIPE
-#define MAP_WIDTH   9
-#define MAP_HEIGHT  7
-
 #define TILE_SIZE  40
+#define MAP_WIDTH   15
+#define MAP_HEIGHT  7
+#define NUM_RAYS    (MAP_WIDTH*TILE_SIZE) / WALL_STRIPE
+
 #define WIN_MLX_W  1920
 #define WIN_MLX_H  1080
 // #define HALF_TILE_SIZE  20
@@ -51,15 +52,15 @@ typedef  struct  s_pos
     float   y_pos;
 }   t_pos;
 
-typedef  struct  s_line
-{
-	float  x; //the x coordinate of line relative to screen
-	int  y; //the current pixel index of the line (along y axis)
-	int  y0; //y start index of drawing texture
-	int  y1; //y end index of drawing texture
-	int  tex_x; //x coordinate of texture to draw
-	int  tex_y; //y coordinate of texture to draw
-} t_line;
+// typedef  struct  s_line
+// {
+// 	float  x; //the x coordinate of line relative to screen
+// 	int  y; //the current pixel index of the line (along y axis)
+// 	int  y0; //y start index of drawing texture
+// 	int  y1; //y end index of drawing texture
+// 	int  tex_x; //x coordinate of texture to draw
+// 	int  tex_y; //y coordinate of texture to draw
+// } t_line;
 
 typedef struct s_ray
 {
@@ -135,8 +136,10 @@ void castallrays(t_root    *root);
 t_ray *create_ray(float rayAngle);
 void cast_allRays(t_root    *root);
 t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
+// t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle);
 float normalizeAngle(float angle);
-void render_wall(t_root * root, t_ray *ray, int strip_id);
+void render_wall(t_root * root, t_ray *ray, int strip_id , float anglee);
+void mini_map(t_root **root);
 // ***********************************************************************
 
 int count_lines(char **map);
