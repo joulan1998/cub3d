@@ -18,24 +18,25 @@ void render_wall(t_root *root, t_ray *ray, int strip_id, float anglee)
         wallTopPixel = 0;
     if (wallBottomPixel > root->win_h)
         wallBottomPixel = root->win_h;
-    y= 0;    // ** Render Ceiling (optional) **
+    y = 1;
     while (y < wallTopPixel)
-        my_mlx_pixel_put(&root->mlx_img, strip_id, y++, BLUE); // Use a ceiling color
-    // ** Render Wall **
+    {   
+        my_mlx_pixel_put(&root->mlx_img, strip_id, y, BLUE);
+        y++;
+    }
     y = wallTopPixel;
     while (y <  wallBottomPixel)
     {
         // if ((!(y %10) && !(y%40)) || (!(strip_id % 10) && !(strip_id % 40)))
-        if ((!(y %10) /*&& !(y%40)*/) || (!(strip_id % 10)/* && !(strip_id % 40)*/))
-            my_mlx_pixel_put(&root->mlx_img, strip_id, y, RED); // Change color based on texture
+        if (!(strip_id % 10) && !(strip_id % 40))
+            my_mlx_pixel_put(&root->mlx_img, strip_id, y, RED);
         else
-            my_mlx_pixel_put(&root->mlx_img, strip_id, y, WHITE); // Change color based on texture
+            my_mlx_pixel_put(&root->mlx_img, strip_id, y, WHITE);
         y++;
     }
     y = wallBottomPixel;
-    // ** Render Floor (optional) **
     while (y < root->win_h)
     {
-        my_mlx_pixel_put(&root->mlx_img, strip_id, y++, GREEN); // Use a floor color
+        my_mlx_pixel_put(&root->mlx_img, strip_id, y++, GREEN);
     }
 }

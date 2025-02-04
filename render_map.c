@@ -6,13 +6,12 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 17:33:58 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:48:51 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-static int prot;
 int maphaswallat(t_root *root, float y, float x)
 {
 	int	local_x;
@@ -28,7 +27,7 @@ int maphaswallat(t_root *root, float y, float x)
 void render_dir(t_root *root)
 {
 	root->player->rotationAngle += root->player->turnDir * 0.4; //root->player->turnSpeed;
-	draw_line(root,*root->player->player_y, *root->player->player_x
+	draw_line(root,*root->player->player_y * SCALE, *root->player->player_x * SCALE
 	, *(root->player->player_y) + (sin(root->player->rotationAngle) * TILE_SIZE)
 	, *(root->player->player_x) + cos(root->player->rotationAngle) * TILE_SIZE
 	,RED);
@@ -37,20 +36,21 @@ void render_map(t_root  *root)
 {
 	int y = 0;
 	int x = 0;
-	
+	static int prot;
+
 	while (y < root->map_h)
 	{
 		x = 0;
 		while (x < root->map_w)
 		{
 			if (root->map[y][x] == WALL)
-				draw_squar(root, y*TILE_SIZE,x*TILE_SIZE, WHITE, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE,x * TILE_SIZE, WHITE, TILE_SIZE, 0);
 			else if (root->map[y][x] == FLOOR)
-				draw_squar(root, y*TILE_SIZE,x*TILE_SIZE, BLACK, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE,x * TILE_SIZE, BLACK, TILE_SIZE, 0);
 			else if (root->map[y][x] == PLAYER)
 			if (root->map[y][x] == PLAYER)
 			{
-				draw_squar(root, y *TILE_SIZE,x*TILE_SIZE, BLACK, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE,x * TILE_SIZE, BLACK, TILE_SIZE, 0);
 				if (prot == 0)
 				{
 					*(root->player->player_y) = (y * TILE_SIZE) + 20;

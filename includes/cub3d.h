@@ -28,12 +28,12 @@ typedef struct s_cub t_cub;
 // #define HALF_TILE_SIZE  20
 #define HALF_TILE_SIZE  TILE_SIZE/2
 #define RED         0xff0000
-#define GREEN       0x00FF00
-#define BLUE        0x0000FF
+#define GREEN       0x00ff00
+#define BLUE        0x0000ff
 #define BLACK       0x000000
 #define WHITE       0xffffff
-#define PURPLE       0xffffff
-#define YELLOW       0xffff00
+#define PURPLE      0xffffff
+#define YELLOW      0xffff00
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
@@ -93,12 +93,15 @@ typedef struct s_player
 
 } t_player;
 
-typedef struct    s_mlx {
+typedef struct    s_mlx
+{
     void    *img;
     char    *addr;
     int        bits_per_pixel;
     int        line_length;
     int        endian;
+    int        width;
+    int        height;
 } t_mlx;
 
 typedef struct s_root
@@ -135,8 +138,8 @@ int maphaswallat(t_root *root, float y, float x);
 void castallrays(t_root    *root);
 t_ray *create_ray(float rayAngle);
 void cast_allRays(t_root    *root);
-t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
-// t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle);
+// t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
+t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle);
 float normalizeAngle(float angle);
 void render_wall(t_root * root, t_ray *ray, int strip_id , float anglee);
 void mini_map(t_root **root);

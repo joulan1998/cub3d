@@ -6,32 +6,15 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 18:59:56 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:46:25 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-int check_wall(int y, int x, char **map)
+int	check_wall(int y, int x, char **map)
 {
-	return((map[y][x] == WALL));
-}
-
-void	draw_ray_up(t_root *root, int y ,int x, int color, char **map)
-{
-	int	i;
-	int	cor;
-
-	i = 0;
-	cor = y;
-	while (1)
-	{
-		if (!(cor%TILE_SIZE) && check_wall((cor/TILE_SIZE)-1, x/TILE_SIZE, map))
-			return ;
-		mlx_pixel_put(root->mlx, root->win, x, y-i, color);
-		cor--;
-		i++;
-	}
+	return ((map[y][x] == WALL));
 }
 
 void	set_player(t_player *p)
@@ -52,15 +35,15 @@ void	set_player(t_player *p)
 	p->rotationAngle = M_PI / 2;
 }
 
-int main()
+int	main()
 {
-	t_player    *player;
-	t_root      *root;
-	int         fd;
-	void        *mlx;
-	void        *win;
-	char        **map;
-	
+	t_player	*player;
+	t_root		*root;
+	int			fd;
+	void		*mlx;
+	void		*win;
+	char		**map;
+
 	player = malloc(sizeof (t_player));
 	if (!player)
 		puts("allocation for payer error\n");
