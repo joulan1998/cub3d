@@ -153,7 +153,7 @@ void cast_allRays(t_root *root)
 	int i = 0;
 	while (i < NUM_RAYS)
 	{
-		// cast_ray(root, &rays[i], rayangle, i);
+		// cast_ray(root, &rays[i], rayangle/*, i*/);
 		cast_ray(root, &rays[i], rayangle);
 		render_wall(root, &rays[i], i,rayangle);
 		rayangle += FOV / NUM_RAYS;

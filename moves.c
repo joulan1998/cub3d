@@ -6,22 +6,22 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 17:31:56 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:17:49 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
-void move_up(t_root *root)
+void	move_up(t_root *root)
 {
 	float	angle;
 	float	movestep;
 	float	new_y;
 	float	new_x;
-	int current_tile_x;
-	int current_tile_y;
+	int		current_tile_x;
+	int		current_tile_y;
 
 	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
-		return;
+		return ;
 	root->player->walkDir = 1;
 	angle = root->player->rotationAngle;
 	movestep = root->player->walkDir * root->player->walkSpeed * 0.2;
@@ -38,17 +38,17 @@ void move_up(t_root *root)
 	}
 }
 
-void move_down(t_root *root)
+void	move_down(t_root	*root)
 {
 	float	angle;
 	float	movestep;
 	float	new_y ;
 	float	new_x ;
-	int current_tile_x;
-	int current_tile_y;
-	
+	int		current_tile_x;
+	int		current_tile_y;
+
 	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
-		return;
+		return ;
 	root->player->walkDir = -1;
 	angle = root->player->rotationAngle;
 	movestep = -1 * root->player->walkDir * root->player->walkSpeed * -0.2;
@@ -64,21 +64,22 @@ void move_down(t_root *root)
 		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
 	}
 }
-void move_right(t_root *root)
+
+void	move_right(t_root *root)
 {
-		root->player->turnDir = 1;
+	root->player->turnDir = 1;
 }
 
-void move_left(t_root *root)
+void	move_left(t_root *root)
 {
-		root->player->turnDir = -1;
+	root->player->turnDir = -1;
 }
 
-int move_player(int keycode, t_root *root)
+int	move_player(int keycode, t_root	*root)
 {
 	if (keycode == 53)
 		exit (1);
-	else 
+	else
 	{
 		if (keycode == 13 || keycode == 126)
 			move_up(root);
