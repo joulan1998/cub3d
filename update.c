@@ -6,18 +6,18 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:03:29 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/03 17:47:57 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:36:08 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
 void	update(t_root **root)
 {
 	render_map(*root);
 	render_player(*root);
 	render_dir(*root);
-	cast_allRays(*root);
+	cast_allrays(*root);
 	mini_map(root);
 	mlx_put_image_to_window((*root)->mlx, (*root)->win,
 		(*root)->mlx_img.img, 0, 0);
