@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/11 13:36:08 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 19:45:24 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <stdbool.h>
 
-typedef struct s_cub t_cub;
+typedef struct s_cub	t_cub;
 # define WALL '1'
 # define FLOOR '0'
 # define ONE '1'
@@ -43,52 +43,52 @@ typedef struct s_cub t_cub;
 # define PURPLE      0xffffff
 # define YELLOW      0xffff00
 
-typedef  struct  s_pos
+typedef struct s_pos
 {
-	float    x_pos;
-	float   y_pos;
-}   t_pos;
+	float	x_pos;
+	float	y_pos;
+}	t_pos;
 
 typedef struct s_ray
 {
-	float	rayAngle;
-	float	wallHitX;
-	float	wallHitY;
+	float	rayangle;
+	float	wallhitx;
+	float	wallhity;
 	float	distance;
-	int		WasHitVertical;
-	int		facingUp;
-	int		facingDown;
-	int		facingRight;
-	int		facingLeft;
+	int		wallhitvertical;
+	int		facingup;
+	int		facingdwn;
+	int		facingright;
+	int		facingleft;
 	int		wallhircontent;
-} t_ray;
+}	t_ray;
 
 typedef struct s_player
 {
 	void	*mlx;
 	void	*win;
 	char	**map;
-	int		MapX;
-	int		MapY;
-	float	rotationAngle;
+	int		mapx;
+	int		mapy;
+	float	rot_angl;
 	int		*player_y;
 	int		*player_x;
-	int		turnDir;
-	int		walkDir;
-	int		turnSpeed;
-	int		walkSpeed;
-} t_player;
+	int		turndir;
+	int		walkdir;
+	int		turnspeed;
+	int		walkspeed;
+}	t_player;
 
-typedef struct    s_mlx
+typedef struct s_mlx
 {
-	void    *img;
-	char    *addr;
+	void	*img;
+	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 	int		width;
 	int		height;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_root
 {
@@ -101,8 +101,8 @@ typedef struct s_root
 	int			win_h;
 	int			map_w;
 	t_player	*player;
-	t_ray  		*ray;
-} t_root;
+	t_ray		*ray;
+}	t_root;
 
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
@@ -114,30 +114,35 @@ int		ft_isdigit(int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		is_number(char *str);
 int		ft_atoi(const char *str);
-void    parsing(t_root *root);
-void    initialize_data(t_root *root,char ***map,t_player *player);
-char    **reading_map(int fd);
-int     move_player(int keycode, t_root *root);
-int     **map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
-void    draw_squar(t_root * root, int y ,int x,int color,int size, int exist);
-void    draw_circle(t_root *root, int center_x, int center_y, int color, int radius);
-void    draw_ray_up(t_root *root, int y ,int x,int color, char **map);
-void    ray_casting(void *mlx, void *win, char **map,t_player *player);
-void    draw_line(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color);
-void    render_player(t_root *root);
-void    my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
-void    update(t_root **root);
-void    render_map(t_root  *root);
-void    render_dir(t_root *root);
-int     maphaswallat(t_root *root, float y, float x);
-void    castallrays(t_root    *root);
-t_ray   *create_ray(float rayAngle);
-void    cast_allrays(t_root    *root);
+void	parsing(t_root *root);
+void	initialize_data(t_root *root, char ***map, t_player *player);
+char	**reading_map(int fd);
+int		move_player(int keycode, t_root *root);
+int		**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
+void	draw_squar(t_root *root, int y, int x, int color, int size, int exist);
+void	draw_circle(t_root *root, int center_x, int center_y, int color, int radius);
+void	draw_ray_up(t_root *root, int y, int x, int color, char **map);
+void	ray_casting(void *mlx, void *win, char **map, t_player *player);
+void	draw_line(t_root *root, int start_y, int start_x, int end_y, int end_x, int color);
+void	render_player(t_root *root);
+void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void	update(t_root **root);
+void	render_map(t_root *root);
+void	render_dir(t_root *root);
+int		maphaswallat(t_root *root, float y, float x);
+void	castallrays(t_root *root);
+t_ray	*create_ray(float rayangle);
+void	cast_allrays(t_root *root);
 // t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
-t_ray   *cast_ray(t_root *root,t_ray *ray,float rayangle);
-float   normalizeangle(float angle);
-void    render_wall(t_root * root, t_ray *ray, int strip_id, float anglee);
-void    mini_map(t_root **root);
-int count_lines(char **map);
+t_ray	*cast_ray(t_root *root, t_ray *ray, float rayangle);
+float	normalizeangle(float angle);
+void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
+void	mini_map(t_root **root);
+int		count_lines(char **map);
+t_pos	*cal_v_d(t_root *root, float angl, bool facingdwn, bool facingup, bool facingright, bool facingleft);
+void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d);
+t_pos	*create_pos(float x, float y);
+float	normalizeangle(float angle);
+int		distance_to_wall(float x1, float y1, float x2, float y2);
 
 #endif

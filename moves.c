@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/18 16:17:49 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:45:35 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	move_up(t_root *root)
 
 	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
 		return ;
-	root->player->walkDir = 1;
-	angle = root->player->rotationAngle;
-	movestep = root->player->walkDir * root->player->walkSpeed * 0.2;
+	root->player->walkdir = 1;
+	angle = root->player->rot_angl;
+	movestep = root->player->walkdir * root->player->walkspeed * 0.2;
 	new_y = *root->player->player_y + sin(angle) * movestep;
 	new_x = *root->player->player_x + cos(angle) * movestep;
 	if (!maphaswallat(root, new_y, new_x))
@@ -49,9 +49,9 @@ void	move_down(t_root	*root)
 
 	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
 		return ;
-	root->player->walkDir = -1;
-	angle = root->player->rotationAngle;
-	movestep = -1 * root->player->walkDir * root->player->walkSpeed * -0.2;
+	root->player->walkdir = -1;
+	angle = root->player->rot_angl;
+	movestep = -1 * root->player->walkdir * root->player->walkspeed * -0.2;
 	new_y = *root->player->player_y + sin(angle) * movestep;
 	new_x = *root->player->player_x + cos(angle) * movestep;
 	if (!maphaswallat(root, new_y, new_x))
@@ -67,12 +67,12 @@ void	move_down(t_root	*root)
 
 void	move_right(t_root *root)
 {
-	root->player->turnDir = 1;
+	root->player->turndir = 1;
 }
 
 void	move_left(t_root *root)
 {
-	root->player->turnDir = -1;
+	root->player->turndir = -1;
 }
 
 int	move_player(int keycode, t_root	*root)
@@ -90,8 +90,8 @@ int	move_player(int keycode, t_root	*root)
 		else if (keycode == 123 || keycode == 0)
 			move_left(root);
 		update(&root);
-		root->player->turnDir = 0;
-		root->player->walkDir = 0;
+		root->player->turndir = 0;
+		root->player->walkdir = 0;
 	}
 	return (0);
 }

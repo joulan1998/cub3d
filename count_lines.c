@@ -1,11 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count_lines.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/12 15:32:34 by ael-garr          #+#    #+#             */
+/*   Updated: 2025/03/12 15:34:17 by ael-garr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cub3d.h"
 
-int count_lines(char **map)
+int	count_lines(char **map)
 {
-    int i  = 0;
-    if (!*map)
-        return(0);
-    while (map[i])
-        i++;
-    return(i);
+	int	i;
+
+	i = 0;
+	if (!*map)
+		return (0);
+	while (map[i])
+		i++;
+	return (i);
 }

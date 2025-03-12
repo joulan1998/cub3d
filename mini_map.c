@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:41:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/04 19:08:11 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:47:41 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int pro;
 
-void	draw_line_mini(t_root *root, int start_y , int start_x, int  end_y ,int end_x, int color)
+void	draw_line_mini(t_root *root, int end_y, int end_x, int color)
 {
 	int		i;
 	double	x;
@@ -23,13 +23,13 @@ void	draw_line_mini(t_root *root, int start_y , int start_x, int  end_y ,int end
 	double	addx;
 	double	addy;
 
-	x = end_x - start_x;
-	y = end_y - start_y;
+	x = end_x - (*(root->player->player_x)  * SCALE);
+	y = end_y - (*(root->player->player_y) * SCALE);
 	length = sqrt(x * x + y * y);
 	addx = x / length;
 	addy = y / length;
-	x = start_x;
-	y = start_y;
+	x = *(root->player->player_x) * SCALE;
+	y = *(root->player->player_y) * SCALE;
 	i = 0;
 	while (i < length)
 	{
@@ -42,16 +42,14 @@ void	draw_line_mini(t_root *root, int start_y , int start_x, int  end_y ,int end
 
 void	render_dir_mini(t_root *root)
 {
-	root->player->rotationAngle += root->player->turnDir *0.4; //root->player->turnSpeed;
+	root->player->rot_angl += root->player->turndir * 0.4;
 	draw_line_mini(root,
-		*root->player->player_y *SCALE,
-		*root->player->player_x * SCALE,
-		(*(root->player->player_y) + ((sin(root->player->rotationAngle)) * TILE_SIZE)) * SCALE,
-		(*(root->player->player_x) + ((cos(root->player->rotationAngle)) * TILE_SIZE)) * SCALE,
+		(*(root->player->player_y) + ((sin(root->player->rot_angl)) * TILE_SIZE)) * SCALE,
+		(*(root->player->player_x) + ((cos(root->player->rot_angl)) * TILE_SIZE)) * SCALE,
 		YELLOW);
 }
 
-void	draw_squar_mini(t_root *root, int y, int x, int color, int size, int exist)
+void	sqr_mini(t_root *root, int y, int x, int color, int size)
 {
 	int	my_x;
 	int	my_y;
@@ -63,19 +61,19 @@ void	draw_squar_mini(t_root *root, int y, int x, int color, int size, int exist)
 		x = my_x;
 		while (x < (my_x + size))
 		{
-			if ((!(y % size) && !(y %10)) || (!(x % 10) && !(x % size)))
+			if ((!(y % size) && !(y % 10)) || (!(x % 10) && !(x % size)))
 			{
 				my_mlx_pixel_put(&root->mlx_img, SCALE * x++, SCALE * y, BLACK);
-				continue;
+				continue ;
 			}
 			else
-				my_mlx_pixel_put(&root->mlx_img, SCALE * x++,  SCALE * y, color);
+				my_mlx_pixel_put(&root->mlx_img, SCALE * x++, SCALE * y, color);
 		}
 		y++;
 	}
 }
 
-void render_map_mini(t_root  *root)
+void	render_map_mini(t_root *root)
 {
 	int	y;
 	int	x;
@@ -88,12 +86,12 @@ void render_map_mini(t_root  *root)
 		while (x < root->map_w)
 		{
 			if (root->map[y][x] == WALL)
-				draw_squar_mini(root, y * TILE_SIZE, x * TILE_SIZE, WHITE, TILE_SIZE, 0);
+				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, WHITE, TILE_SIZE);
 			else if (root->map[y][x] == FLOOR)
-				draw_squar_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE, 0);
+				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE);
 			else if (root->map[y][x] == PLAYER)
 			{
-				draw_squar_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE, 0);
+				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE);
 				if (pro == 0)
 				{
 					*(root->player->player_y) = (y * TILE_SIZE) + 20;
@@ -112,8 +110,8 @@ void	mini_cast(t_root *root)
 	float	rayangle;
 	t_ray	rays[NUM_RAYS];
 	int		i;
-	
-	rayangle = root->player->rotationAngle - (FOV / 2);
+
+	rayangle = root->player->rot_angl - (FOV / 2);
 	i = 0;
 	while (i < NUM_RAYS)
 	{

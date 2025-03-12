@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:23:34 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/10 17:00:32 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:42:33 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee)
 	int		walltoppixel;
 	int		y;
 
-	perp_dist = ray->distance * cos((double)(anglee - root->player->rotationAngle));
+	perp_dist = ray->distance * cos((double)(anglee - root->player->rot_angl));
 	distanceprojwall = (root->win_w / 2) / tan(FOV / 2);
 	projwallheight = (TILE_SIZE / perp_dist) * distanceprojwall;
 	wallstripeheight = (int)projwallheight;

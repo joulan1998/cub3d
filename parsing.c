@@ -6,13 +6,13 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:21:43 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 17:34:50 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:57:57 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-void draw_squar(t_root *root, int y ,int x,int color,int size, int exist)
+void	draw_squar(t_root *root, int y, int x, int color, int size, int exist)
 {
 	int	my_x;
 	int	my_y;
@@ -24,14 +24,14 @@ void draw_squar(t_root *root, int y ,int x,int color,int size, int exist)
 		x = my_x;
 		while (x < (my_x + size))
 		{
-			if ((!(y % size) && !(y %10)) || (!(x % 10) && !(x % size)))
+			if ((!(y % size) && !(y % 10)) || (!(x % 10) && !(x % size)))
 			{
-				my_mlx_pixel_put(&root->mlx_img, x++,  y, BLACK);
-				continue;
+				my_mlx_pixel_put(&root->mlx_img, x++, y, BLACK);
+				continue ;
 			}
 			else
 			{
-				my_mlx_pixel_put(&root->mlx_img,  x++,  y, color);
+				my_mlx_pixel_put(&root->mlx_img, x++, y, color);
 			}
 		}
 		y++;

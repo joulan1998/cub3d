@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/11 13:16:55 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:45:35 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	set_player(t_player *p)
 		puts("error allocation!");
 		exit(1);
 	}
-	p->walkSpeed = 100;
-	p->turnSpeed = 45 * (M_PI / 180);
+	p->walkspeed = 100;
+	p->turnspeed = 45 * (M_PI / 180);
 	*p->player_x = 0;
 	*p->player_y = 0;
-	p->turnDir = 0;
-	p->walkDir = 0;
-	p->rotationAngle = M_PI / 2;
+	p->turndir = 0;
+	p->walkdir = 0;
+	p->rot_angl = M_PI / 2;
 }
 
 int	main()
