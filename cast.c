@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:21:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 20:20:13 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:44:03 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,32 @@
 
 t_pos	*cal_h_d(t_root *root, float an, bool f_d, bool f_u, bool f_r, bool f_l)
 {
-	float	x;
-	float	y;
 	float	xstep;
-	// t_pos *nxt_tch;
 	float	nexthtouchx;
 	float	nexthtouchy;
 	float	xtocheck;
 	float	ytocheck;
 
-	cal_intcep(&x, &y, *root->player->player_x, *root->player->player_y, an, 0, f_r, f_d);
+	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, 0, f_r, f_d);
 	xstep = TILE_SIZE / tan(an);
 	if ((f_l && xstep > 0) || (f_r && xstep < 0))
 		xstep *= -1;
-	// nxt_tch = create_pos(x, y);
-	nexthtouchx = x;
-	nexthtouchy = y;
-	// while (nxt_tch->x_pos >= 0 && nxt_tch->x_pos < root->win_w && nxt_tch->y_pos >= 0 && nxt_tch->y_pos < root->win_h)
+	nexthtouchx = xtocheck;
+	nexthtouchy = ytocheck;
 	while (nexthtouchx >= 0 && nexthtouchx < root->win_w && nexthtouchy >= 0 && nexthtouchy < root->win_h)
 	{
-		// xtocheck = nxt_tch->x_pos - 1;
 		xtocheck = nexthtouchx;
 		if (f_u)
 			ytocheck = nexthtouchy - 1;
-			// ytocheck = nxt_tch->y_pos - 1;
 		else
 			ytocheck = nexthtouchy;
-			// ytocheck = nxt_tch->y_pos;
 		if (maphaswallat(root, ytocheck, xtocheck))
 			return (create_pos(nexthtouchx, nexthtouchy));
-			// return (create_pos(nxt_tch->x_pos, nxt_tch->y_pos));
 		nexthtouchx += xstep;
-		// nxt_tch->x_pos += xstep;
 		if (f_u)
 			nexthtouchy -= TILE_SIZE;
-			// nxt_tch->y_pos -= TILE_SIZE;
 		else
 			nexthtouchy += TILE_SIZE;
-			// nxt_tch->y_pos += TILE_SIZE;
 	}
 	return (create_pos(-1, -1));
 }

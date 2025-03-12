@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 19:43:37 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:53:49 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,31 @@ void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver,
 
 t_pos	*cal_v_d(t_root *root, float an, bool f_d, bool f_u, bool f_r, bool f_l)
 {
-	float	xintercept;
-	float	yintercept;
-	float	xstep;
 	float	ystep;
 	float	n_v_t_h;
 	float	n_v_t_y;
 	float	xtocheck;
 	float	ytocheck;
 
-	cal_intcep(&xintercept, &yintercept, *root->player->player_x, *root->player->player_y, an, true, f_r, f_d);
-	xstep = TILE_SIZE * (f_l ? -1 : 1);
+	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, true, f_r, f_d);
 	ystep = TILE_SIZE * tan(an);
 	if ((f_u && ystep > 0) || (f_d && ystep < 0))
 		ystep *= -1;
-	n_v_t_h = xintercept;
-	n_v_t_y = yintercept;
+	n_v_t_h = xtocheck;
+	n_v_t_y = ytocheck;
 	while (n_v_t_h >= 0 && n_v_t_h < root->win_w && n_v_t_y >= 0 && n_v_t_y < root->win_h)
 	{
-		xtocheck = n_v_t_h + (f_l ? -1 : 0);
+		if (f_l)
+			xtocheck = n_v_t_h - 1;
+		else
+			xtocheck = n_v_t_h;
 		ytocheck = n_v_t_y;
 		if (maphaswallat(root, ytocheck, xtocheck))
 			return (create_pos(n_v_t_h, n_v_t_y));
-		n_v_t_h += xstep;
+		if (f_l)
+			n_v_t_h -= TILE_SIZE;
+		else
+			n_v_t_h += TILE_SIZE;
 		n_v_t_y += ystep;
 	}
 	return (create_pos(-1, -1));
