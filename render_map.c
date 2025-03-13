@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 21:02:11 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:14:23 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,37 @@ void	render_dir(t_root *root)
 		RED);
 }
 
+void	local_pro(t_root **root, int x, int y)
+{
+	*((*root)->player->player_y) = (y * TILE_SIZE) + 20;
+	*((*root)->player->player_x) = (x * TILE_SIZE) + 20;	
+}
+
 void	render_map(t_root *root)
 {
-	int		y;
-	int		x;
-	static int prot;
+	int			y;
+	int			x;
+	static int	prot;
 
-	x = 0;
-	y = 0;
-	while (y < root->map_h)
+	y = -1;
+	while (++y < root->map_h)
 	{
-		x = 0;
-		while (x < root->map_w)
+		x = -1;
+		while (++x < root->map_w)
 		{
 			if (root->map[y][x] == WALL)
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE, TILE_SIZE);
 			else if (root->map[y][x] == FLOOR)
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE);
 			if (root->map[y][x] == PLAYER)
 			{
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE, 0);
+				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK, TILE_SIZE);
 				if (prot == 0)
 				{
-					*(root->player->player_y) = (y * TILE_SIZE) + 20;
-					*(root->player->player_x) = (x * TILE_SIZE) + 20;
+					local_pro(&root, x, y);
 					prot = 1;
 				}
 			}
-			x++;
 		}
-		y++;
 	}
 }

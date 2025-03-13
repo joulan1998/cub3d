@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:21:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 20:44:03 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:38:02 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_pos	*cal_h_d(t_root *root, float an, bool f_d, bool f_u, bool f_r, bool f_l)
 	float	xtocheck;
 	float	ytocheck;
 
-	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, 0, f_r, f_d);
+	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, 0, create_compass(0, f_d, f_r, 0));
 	xstep = TILE_SIZE / tan(an);
 	if ((f_l && xstep > 0) || (f_r && xstep < 0))
 		xstep *= -1;

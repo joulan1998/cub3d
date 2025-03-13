@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 20:53:49 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:38:08 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,22 @@ t_pos	*create_pos(float x, float y)
 	return (pos);
 }
 
-void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d)
+// void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d)
+void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, t_compass *cmps)
 {
 	if (ver)
 	{
 		*x = floor(p_x / TILE_SIZE) * TILE_SIZE;
-		if (f_r)
+		// if (f_r)
+		if (cmps->f_r)
 			*x += TILE_SIZE;
 		*y = p_y + (*x - p_x) * tan(angle);
 	}
 	else
 	{
 		*y = floor(p_y / TILE_SIZE) * TILE_SIZE;
-		if (f_d)
+		// if (f_d)
+		if (cmps->f_d)
 			*y += TILE_SIZE;
 		*x = p_x + (*y - p_y) / tan(angle);
 	}
@@ -63,7 +66,7 @@ t_pos	*cal_v_d(t_root *root, float an, bool f_d, bool f_u, bool f_r, bool f_l)
 	float	xtocheck;
 	float	ytocheck;
 
-	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, true, f_r, f_d);
+	cal_intcep(&xtocheck, &ytocheck, *root->player->player_x, *root->player->player_y, an, true, create_compass(0, f_d, f_r, 0));
 	ystep = TILE_SIZE * tan(an);
 	if ((f_u && ystep > 0) || (f_d && ystep < 0))
 		ystep *= -1;

@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 19:45:24 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:36:28 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ typedef struct s_player
 	int		walkspeed;
 }	t_player;
 
+typedef struct s_compass
+{
+	bool f_u;
+	bool f_d;
+	bool f_r;
+	bool f_l;
+}	t_compass;
+
 typedef struct s_mlx
 {
 	void	*img;
@@ -119,8 +127,8 @@ void	initialize_data(t_root *root, char ***map, t_player *player);
 char	**reading_map(int fd);
 int		move_player(int keycode, t_root *root);
 int		**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
-void	draw_squar(t_root *root, int y, int x, int color, int size, int exist);
-void	draw_circle(t_root *root, int center_x, int center_y, int color, int radius);
+void	draw_squar(t_root *root, int y, int x, int color, int size);
+void	draw_circle(t_root *root, t_pos *cnt_cor, int color, int radius);
 void	draw_ray_up(t_root *root, int y, int x, int color, char **map);
 void	ray_casting(void *mlx, void *win, char **map, t_player *player);
 void	draw_line(t_root *root, int start_y, int start_x, int end_y, int end_x, int color);
@@ -140,9 +148,13 @@ void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
 void	mini_map(t_root **root);
 int		count_lines(char **map);
 t_pos	*cal_v_d(t_root *root, float angl, bool facingdwn, bool facingup, bool facingright, bool facingleft);
-void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d);
+// void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d);
+void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, t_compass *cmps);
 t_pos	*create_pos(float x, float y);
 float	normalizeangle(float angle);
 int		distance_to_wall(float x1, float y1, float x2, float y2);
+void	render_dir_mini(t_root *root);
+void	sqr_mini(t_root *root, int y, int x, int color);
+t_compass *create_compass(bool f_u, bool f_d, bool f_r, bool f_l);
 
 #endif

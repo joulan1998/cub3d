@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   create_compass.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/19 15:21:43 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 16:14:10 by ael-garr         ###   ########.fr       */
+/*   Created: 2025/03/13 16:25:35 by ael-garr          #+#    #+#             */
+/*   Updated: 2025/03/13 16:31:24 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-void	draw_squar(t_root *root, int y, int x, int color, int size)
+t_compass *create_compass(bool f_u, bool f_d, bool f_r, bool f_l)
 {
-	int	my_x;
-	int	my_y;
+    t_compass *result;
 
-	my_x = x;
-	my_y = y;
-	while (y < (my_y + size))
-	{
-		x = my_x;
-		while (x < (my_x + size))
-		{
-			if ((!(y % size) && !(y % 10)) || (!(x % 10) && !(x % size)))
-			{
-				my_mlx_pixel_put(&root->mlx_img, x++, y, BLACK);
-				continue ;
-			}
-			else
-			{
-				my_mlx_pixel_put(&root->mlx_img, x++, y, color);
-			}
-		}
-		y++;
-	}
+    result = (t_compass *)malloc(sizeof(t_compass) * 1);
+    if (!result)
+        return (NULL);
+    result->f_u = f_u;
+    result->f_d = f_d;
+    result->f_r = f_r;
+    result->f_l = f_l;
+    return (result);
 }
