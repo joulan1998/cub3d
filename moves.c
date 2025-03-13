@@ -6,21 +6,22 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 16:45:35 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:02:30 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
 void	move_up(t_root *root)
 {
 	float	angle;
 	float	movestep;
 	float	new_y;
 	float	new_x;
-	int		current_tile_x;
-	int		current_tile_y;
+	t_pos	*cur_pos;
 
-	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
+	if (!root || !root->player || !root->player->player_x
+		|| !root->player->player_y)
 		return ;
 	root->player->walkdir = 1;
 	angle = root->player->rot_angl;
@@ -29,9 +30,9 @@ void	move_up(t_root *root)
 	new_x = *root->player->player_x + cos(angle) * movestep;
 	if (!maphaswallat(root, new_y, new_x))
 	{
-		current_tile_x = *root->player->player_x / TILE_SIZE;
-		current_tile_y = *root->player->player_y / TILE_SIZE;
-		root->map[current_tile_y][current_tile_x] = FLOOR;
+		cur_pos = create_pos(*root->player->player_x / TILE_SIZE,
+				*root->player->player_y / TILE_SIZE);
+		root->map[(int)cur_pos->y_pos][(int)cur_pos->x_pos] = FLOOR;
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
 		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
@@ -44,10 +45,10 @@ void	move_down(t_root	*root)
 	float	movestep;
 	float	new_y ;
 	float	new_x ;
-	int		current_tile_x;
-	int		current_tile_y;
+	t_pos	*cur_pos;
 
-	if (!root || !root->player || !root->player->player_x || !root->player->player_y)
+	if (!root || !root->player || !root->player->player_x
+		|| !root->player->player_y)
 		return ;
 	root->player->walkdir = -1;
 	angle = root->player->rot_angl;
@@ -56,9 +57,9 @@ void	move_down(t_root	*root)
 	new_x = *root->player->player_x + cos(angle) * movestep;
 	if (!maphaswallat(root, new_y, new_x))
 	{
-		current_tile_x = *root->player->player_x / TILE_SIZE;
-		current_tile_y = *root->player->player_y / TILE_SIZE;
-		root->map[current_tile_y][current_tile_x] = FLOOR;
+		cur_pos = create_pos(*root->player->player_x / TILE_SIZE,
+				*root->player->player_y / TILE_SIZE);
+		root->map[(int) cur_pos->y_pos][(int) cur_pos->x_pos] = FLOOR;
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
 		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
