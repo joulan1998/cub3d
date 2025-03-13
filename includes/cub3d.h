@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 16:36:28 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:33:19 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	initialize_data(t_root *root, char ***map, t_player *player);
 char	**reading_map(int fd);
 int		move_player(int keycode, t_root *root);
 int		**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
-void	draw_squar(t_root *root, int y, int x, int color, int size);
+void	draw_squar(t_root *root, int y, int x, int color);
 void	draw_circle(t_root *root, t_pos *cnt_cor, int color, int radius);
 void	draw_ray_up(t_root *root, int y, int x, int color, char **map);
 void	ray_casting(void *mlx, void *win, char **map, t_player *player);
@@ -147,7 +147,8 @@ float	normalizeangle(float angle);
 void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
 void	mini_map(t_root **root);
 int		count_lines(char **map);
-t_pos	*cal_v_d(t_root *root, float angl, bool facingdwn, bool facingup, bool facingright, bool facingleft);
+// t_pos	*cal_v_d(t_root *root, float angl, bool facingdwn, bool facingup, bool facingright, bool facingleft);
+t_pos	*cal_v_d(t_root *root, float angl, t_compass *cmps);
 // void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, bool f_r, bool f_d);
 void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, t_compass *cmps);
 t_pos	*create_pos(float x, float y);
