@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 15:02:30 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:10:19 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	move_up(t_root *root)
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
 		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
+		free(cur_pos);
 	}
 }
 
@@ -63,6 +64,7 @@ void	move_down(t_root	*root)
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
 		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
+		free(cur_pos);
 	}
 }
 
@@ -79,7 +81,16 @@ void	move_left(t_root *root)
 int	move_player(int keycode, t_root	*root)
 {
 	if (keycode == 53)
-		exit (1);
+	{
+		free(root->mlx);
+		free(root->win);
+		free(root->player->player_x);
+		free(root->player->player_y);
+		free(root->player);
+		free(root->map);
+		free(root->mlx_img.img);
+		exit (111);
+	}
 	else
 	{
 		if (keycode == 13 || keycode == 126)

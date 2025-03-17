@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:56:47 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 16:52:46 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 15:57:37 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_ray	*create_ray(float rayangle)
 	return (res);
 }
 
-void	draw_line(t_root *root, int start_y, int start_x, int end_y, int end_x, int color)
+void	draw_line(t_root *root, int end_y, int end_x, int color)
 {
 	double	length;
 	double	addx;
@@ -37,13 +37,13 @@ void	draw_line(t_root *root, int start_y, int start_x, int end_y, int end_x, int
 	double	x;
 	double	y;
 
-	x = end_x - start_x;
-	y = end_y - start_y;
+	x = end_x - *(root->player->player_x) * SCALE;
+	y = end_y - *(root->player->player_y) * SCALE;
 	length = sqrt(x * x + y * y);
 	addx = x / length;
 	addy = y / length;
-	x = start_x;
-	y = start_y;
+	x = *(root->player->player_x) * SCALE;
+	y = *(root->player->player_y) * SCALE;
 	end_x = 0;
 	while (end_x < length)
 	{

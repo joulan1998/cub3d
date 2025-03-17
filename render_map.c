@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 17:33:36 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 12:59:14 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	maphaswallat(t_root *root, float y, float x)
 void	render_dir(t_root *root)
 {
 	root->player->rot_angl += root->player->turndir * 0.4;
-	draw_line(root, *root->player->player_y * SCALE,
-		*root->player->player_x * SCALE,
+	draw_line(root,
 		*(root->player->player_y) + (sin(root->player->rot_angl) * TILE_SIZE),
 		*(root->player->player_x) + cos(root->player->rot_angl) * TILE_SIZE,
 		RED);

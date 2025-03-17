@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:41:42 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 16:16:40 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 13:06:07 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	draw_line_mini(t_root *root, int end_y, int end_x, int color)
 		y += add->y_pos;
 		i++;
 	}
+	free(add);
 }
 
 void	render_dir_mini(t_root *root)

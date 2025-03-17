@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:21:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 17:19:48 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:06:25 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_pos	*cal_h_d(t_root *root, float an, t_compass *cmps)
 	float	x_chk;
 	float	y_chk;
 
-	cal_intcep(&x_chk, &y_chk, *root->player->player_x, *root->player->player_y, an, 0, create_compass(0, cmps->f_d, cmps->f_r, 0));
+	cal_intcep(&x_chk, &y_chk, create_info(root, an, false), create_compass(0, cmps->f_d, cmps->f_r, 0));
 	xstep = TILE_SIZE / tan(an);
 	if ((cmps->f_l && xstep > 0) || (cmps->f_r && xstep < 0))
 		xstep *= -1;
@@ -34,13 +34,17 @@ t_pos	*cal_h_d(t_root *root, float an, t_compass *cmps)
 		else
 			y_chk = n_h_t_y;
 		if (maphaswallat(root, y_chk, x_chk))
+		{
+			free(cmps);
 			return (create_pos(n_h_t_x, n_h_t_y));
+		}
 		n_h_t_x += xstep;
 		if (cmps->f_u)
 			n_h_t_y -= TILE_SIZE;
 		else
 			n_h_t_y += TILE_SIZE;
 	}
+	free(cmps);
 	return (create_pos(-1, -1));
 }
 
@@ -84,14 +88,16 @@ t_ray	*cast_ray(t_root *root, t_ray *ray, float angl)
 				angl > 0 && angl < M_PI,
 				angl < M_PI_2 || angl > 3 * M_PI_2,
 				!(angl < M_PI_2 || angl > 3 * M_PI_2)));
-	if (v && v->x_pos >= 0 && (!h || h->x_pos < 0
-			|| distance_to_wall((float)*root->player->player_x,
+	if (v && v->x_pos >= 0 && (!h || h->x_pos < 0 || distance_to_wall(
+				(float)*root->player->player_x,
 				(float)*root->player->player_y, v->x_pos, v->y_pos)
 			< distance_to_wall((float)*root->player->player_x,
 				(float)*root->player->player_y, h->x_pos, h->y_pos)))
 		set_ray_h(root, &ray, v);
-	else if (h && h->x_pos >= 0)
+	else
 		set_ray_v(root, &ray, h);
+	free(h);
+	free(v);
 	return (ray);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:16:25 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/02/02 19:02:53 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/16 16:57:09 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,8 @@ void	initialize_data(t_root *root, char ***map, t_player *player)
 	root->mlx_img.addr = mlx_get_data_addr
 		(root->mlx_img.img, &root->mlx_img.bits_per_pixel,
 			&root->mlx_img.line_length, &root->mlx_img.endian);
+	load_xpm_texture(root->mlx, "wall_s.xpm", &root->front_wall_texture);
+	load_xpm_texture(root->mlx, "wall_s.xpm", &root->back_wall_texture);
+	load_xpm_texture(root->mlx, "wall.xpm", &root->left_wall_texture);
+	load_xpm_texture(root->mlx, "wall.xpm", &root->right_wall_texture);
 }
