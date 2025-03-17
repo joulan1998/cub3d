@@ -6,14 +6,12 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 15:58:05 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:35:34 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "includes/cub3d.h"
 
-	
 void f()
 {
 	system("leaks cub3D");
@@ -33,15 +31,13 @@ void	set_player(t_player *p)
 		exit(1);
 	}
 	p->walkspeed = 100;
-	// p->turnspeed = 45 * (M_PI / 180);
-	p->turnspeed = 20 * (M_PI / 180);
+	p->turnspeed = 45 * (M_PI / 180);
 	*p->player_x = 0;
 	*p->player_y = 0;
 	p->turndir = 0;
 	p->walkdir = 0;
-	p->rot_angl = M_PI / 2;
+	p->rot_angl = M_PI / 1;
 }
-
 
 int	main()
 {

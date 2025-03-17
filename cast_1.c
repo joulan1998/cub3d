@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 14:08:23 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:38:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,6 @@ float	normalizeangle(float angle)
 	if (res < 0)
 		res = (2 * M_PI) + res;
 	return (res);
-}
-
-t_pos	*create_pos(float x, float y)
-{
-	t_pos	*pos;
-
-	pos = (t_pos *)malloc(sizeof(t_pos));
-	pos->x_pos = x;
-	pos->y_pos = y;
-	return (pos);
 }
 
 t_i_infos	*create_info(t_root *root, float ang, bool ver)
@@ -74,31 +64,17 @@ void	cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps)
 t_pos	*cal_v_d(t_root *root, float an, t_compass *cmps)
 {
 	float	ystep;
-	float	n_v_t_h;
-	float	n_v_t_y;
-	float	xtocheck;
-	float	ytocheck;
+	t_pos	*dist;
+	t_pos	*to_chek;
 
-	cal_intcep(&xtocheck, &ytocheck, create_info(root, an, true), create_compass(0, cmps->f_d, cmps->f_r, 0));
+	to_chek = create_pos(0, 0);
+	cal_intcep(&to_chek->x_pos, &to_chek->y_pos,
+		create_info(root, an, true),
+		create_compass(0, cmps->f_d, cmps->f_r, 0));
 	ystep = TILE_SIZE * tan(an);
 	if ((cmps->f_u && ystep > 0) || (cmps->f_d && ystep < 0))
 		ystep *= -1;
-	n_v_t_h = xtocheck;
-	n_v_t_y = ytocheck;
-	while (n_v_t_h >= 0 && n_v_t_h < root->win_w && n_v_t_y >= 0 && n_v_t_y < root->win_h)
-	{
-		if (cmps->f_l)
-			xtocheck = n_v_t_h - 1;
-		else
-			xtocheck = n_v_t_h;
-		ytocheck = n_v_t_y;
-		if (maphaswallat(root, ytocheck, xtocheck))
-			return (free(cmps), create_pos(n_v_t_h, n_v_t_y));
-		if (cmps->f_l)
-			n_v_t_h -= TILE_SIZE;
-		else
-			n_v_t_h += TILE_SIZE;
-		n_v_t_y += ystep;
-	}
-	return (free(cmps), create_pos(-1, -1));
+	dist = create_pos(to_chek->x_pos, to_chek->y_pos);
+	free(to_chek);
+	return (return_pos_v(root, cmps, dist, ystep));
 }

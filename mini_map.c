@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:41:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 16:17:47 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:15:30 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	mini_cast(t_root *root)
 	t_ray	rays[NUM_RAYS];
 	int		i;
 
-	rayangle = root->player->rot_angl - (FOV / 2);
+	rayangle = root->player->rot_angl - ((60 * (M_PI / 180)) / 2);
 	i = 0;
 	while (i < NUM_RAYS)
 	{
-		rayangle += FOV / NUM_RAYS;
+		rayangle += (60 * (M_PI / 180)) / NUM_RAYS;
 		i++;
 	}
 }

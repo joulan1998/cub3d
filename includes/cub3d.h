@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 17:19:27 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:40:10 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ typedef struct s_cub	t_cub;
 # define ONE '1'
 # define ZERO '0'
 # define PLAYER 'N'
-# define FOV (60 * (M_PI / 180))
+// # define FOV (60 * (M_PI / 180))
 # define WALL_STRIPE  1
 # define SCALE  0.3
 # define TILE_SIZE  40
-// # define MAP_WIDTH   15
 # define MAP_WIDTH   33
 # define MAP_HEIGHT  7
 # define NUM_RAYS    (MAP_WIDTH*TILE_SIZE) / WALL_STRIPE
 # define WIN_MLX_W  1920
 # define WIN_MLX_H  1080
-// # define HALF_TILE_SIZE  TILE_SIZE/2
 # define RED         0xff0000
 # define GREEN       0x00ff00
 # define BLUE        0x0000ff
@@ -67,12 +65,12 @@ typedef struct s_ray
 typedef struct s_rndr_str
 {
 	float	perp_dist;
-	float distanceprojwall;
-	float projwallheight;
-	int wallstripeheight;
-	int wallbottompixel;
-	int walltoppixel;
-	float wall_x;
+	float	distanceprojwall;
+	float	projwallheight;
+	int		wallstripeheight;
+	int		wallbottompixel;
+	int		walltoppixel;
+	float	wall_x;
 	int		y;
 }	t_rndr_str;
 
@@ -131,64 +129,60 @@ typedef struct s_root
 	int			map_w;
 	t_player	*player;
 	t_ray		*ray;
-	// t_mlx		wall_texture;
 	t_mlx		left_wall_texture;
 	t_mlx		right_wall_texture;
 	t_mlx		front_wall_texture;
 	t_mlx		back_wall_texture;
-	int	tex_width;
-	int	tex_height;
-	t_mlx	tst;
+	int			tex_width;
+	int			tex_height;
+	t_mlx		tst;
 }	t_root;
 
-char	**ft_split(char const *s, char c);
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-char	*ft_strchr(const char *chain, int c);
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-int		is_number(char *str);
-int		ft_atoi(const char *str);
-void	parsing(t_root *root);
-void	initialize_data(t_root *root, char ***map, t_player *player);
-char	**reading_map(int fd);
-int		move_player(int keycode, t_root *root);
-int		**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
-void	draw_squar(t_root *root, int y, int x, int color);
-void	draw_circle(t_root *root, t_pos *cnt_cor, int color, int radius);
-// void	draw_ray_up(t_root *root, int y, int x, int color, char **map);
-void	ray_casting(void *mlx, void *win, char **map, t_player *player);
-void	draw_line(t_root *root, int end_y, int end_x, int color);
-void	render_player(t_root *root);
-void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
-void	update(t_root **root);
-void	render_map(t_root *root);
-void	render_dir(t_root *root);
-int		maphaswallat(t_root *root, float y, float x);
-void	castallrays(t_root *root);
-t_ray	*create_ray(float rayangle);
-void	cast_allrays(t_root *root);
-// t_ray *cast_ray(t_root *root,t_ray *ray,float rayangle, int i);
-t_ray	*cast_ray(t_root *root, t_ray *ray, float rayangle);
-float	normalizeangle(float angle);
-void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
-void	mini_map(t_root **root);
-int		count_lines(char **map);
-// t_pos	*cal_v_d(t_root *root, float angl, bool facingdwn, bool facingup, bool facingright, bool facingleft);
-t_pos	*cal_v_d(t_root *root, float angl, t_compass *cmps);
-// void	cal_intcep(float *x, float *y, float p_x, float p_y, float angle, bool ver, t_compass *cmps);
-void	cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
-t_pos	*create_pos(float x, float y);
-float	normalizeangle(float angle);
-int		distance_to_wall(float x1, float y1, float x2, float y2);
-void	render_dir_mini(t_root *root);
-void	sqr_mini(t_root *root, int y, int x, int color);
+char		**ft_split(char const *s, char c);
+void		ft_putstr_fd(char *s, int fd);
+size_t		ft_strlen(const char *s);
+char		*ft_strdup(const char *s1);
+char		*ft_strchr(const char *chain, int c);
+int			ft_isalpha(int c);
+int			ft_isdigit(int c);
+char		*ft_strjoin(char const *s1, char const *s2);
+int			is_number(char *str);
+int			ft_atoi(const char *str);
+void		parsing(t_root *root);
+void		initialize_data(t_root *root, char ***map, t_player *player);
+char		**reading_map(int fd);
+int			move_player(int keycode, t_root *root);
+int			**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
+void		draw_squar(t_root *root, int y, int x, int color);
+void		draw_circle(t_root *root, t_pos *cnt_cor, int color, int radius);
+void		ray_casting(void *mlx, void *win, char **map, t_player *player);
+void		draw_line(t_root *root, int end_y, int end_x, int color);
+void		render_player(t_root *root);
+void		my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void		update(t_root **root);
+void		render_map(t_root *root);
+void		render_dir(t_root *root);
+int			maphaswallat(t_root *root, float y, float x);
+void		castallrays(t_root *root);
+t_ray		*create_ray(float rayangle);
+void		cast_allrays(t_root *root);
+t_ray		*cast_ray(t_root *root, t_ray *ray, float rayangle);
+float		normalizeangle(float angle);
+void		render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
+void		mini_map(t_root **root);
+int			count_lines(char **map);
+t_pos		*cal_v_d(t_root *root, float angl, t_compass *cmps);
+void		cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
+t_pos		*create_pos(float x, float y);
+float		normalizeangle(float angle);
+int			distance_to_wall(float x1, float y1, float x2, float y2);
+void		render_dir_mini(t_root *root);
+void		sqr_mini(t_root *root, int y, int x, int color);
 t_compass	*create_compass(bool f_u, bool f_d, bool f_r, bool f_l);
 t_i_infos	*create_info(t_root *root, float ang, bool ver);
-int get_texture_pixel(t_mlx *texture, int tex_x, int tex_y);
-// void  load_texture(t_root *root, char *file_path);
-int load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture);
+int			get_texture_pixel(t_mlx *texture, int tex_x, int tex_y);
+int			load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture);
+t_pos		*return_pos_h(t_root *root, t_compass *cmps, t_pos *dist, float s);
+t_pos		*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float s);
 
 #endif
