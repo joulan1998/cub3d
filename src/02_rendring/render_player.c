@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 15:20:25 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void	render_player(t_root *root)
 {

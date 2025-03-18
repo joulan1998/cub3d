@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:41:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 16:15:30 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:03:47 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/cub3d.h"
+#include "../../headers/cub3d.h"
 
 void	local_prot(t_root **root, int x, int y)
 {

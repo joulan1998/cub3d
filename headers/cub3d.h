@@ -242,11 +242,11 @@ typedef struct s_root
 	t_mlx		tst;
 }	t_root;
 
-typedef struct s_map
-{
-	char			*line;
-	struct s_map	*next;
-} t_map;
+// typedef struct s_map
+// {
+// 	char			*line;
+// 	struct s_map	*next;
+// } t_map;
 
 //char		**ft_split(char  *s, char c);
 void		ft_putstr_fd(char *s, int fd);
@@ -259,7 +259,8 @@ void		ft_putstr_fd(char *s, int fd);
 int			is_number(char *str);
 //int			ft_atoi( char *str);
 void		parsing(t_root *root);
-void		initialize_data(t_root *root, char ***map, t_player *player);
+// void		initialize_data(t_root *root, char ***map, t_player *player);
+void	initialize_data(t_root *root, t_params *params, t_player *player);
 char		**reading_map(int fd);
 int			move_player(int keycode, t_root *root);
 int			**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);

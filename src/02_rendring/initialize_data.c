@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:16:25 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 16:57:09 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 // todo: change this fucntion to bool incase something happens it should return false otherwise return true
 void	initialize_data(t_root *root, t_params *params, t_player *player)

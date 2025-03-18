@@ -1,4 +1,4 @@
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 // int **map_handling(int map[MAP_HEIGHT][MAP_WIDTH])
 // {

@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 19:35:34 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:03:07 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void f()
 {
@@ -46,7 +46,7 @@ int	main()
 	void		*mlx;
 	void		*win;
 	//int			fd;
-	//char		**map;
+	char		**map;
 
 	atexit(f);
 	player = malloc(sizeof (t_player));

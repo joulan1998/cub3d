@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 16:10:19 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void	move_up(t_root *root)
 {

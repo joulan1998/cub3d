@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:32:34 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/12 15:34:17 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 int	count_lines(char **map)
 {

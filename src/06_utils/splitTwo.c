@@ -1,5 +1,5 @@
 // split_utils.c
-#include "../../headers/cub3d.h"
+#include "../../../headers/cub3d.h"
 
 static int count_parts(const char *s)
 {

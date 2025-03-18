@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 15:41:42 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 13:06:07 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:04:36 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/cub3d.h"
+#include "../../headers/cub3d.h"
 
 void	draw_line_mini(t_root *root, int end_y, int end_x, int color)
 {

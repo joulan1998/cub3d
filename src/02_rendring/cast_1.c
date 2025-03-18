@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 19:38:29 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 int	distance_to_wall(float x1, float y1, float x2, float y2)
 {

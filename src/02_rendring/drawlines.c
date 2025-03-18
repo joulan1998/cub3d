@@ -1,6 +1,6 @@
-# include "../headers/cub3d.h"
+// # include "../../../headers/cub3d.h"
 
-int draw_H_line(void *mlx,)
-{
+// // int draw_H_line(void *mlx,)
+// // {
 
-}
+// // }

@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 16:25:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/13 16:40:19 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:01:36 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 t_compass	*create_compass(bool f_u, bool f_d, bool f_r, bool f_l)
 {

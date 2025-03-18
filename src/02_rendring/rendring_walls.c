@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:23:34 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 20:15:20 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:05:13 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void	decide_txt(t_root *root, t_rndr_str *rndr, t_ray *ray, t_mlx **txt)
 {
@@ -81,7 +81,7 @@ void	draw_wall_strip(t_root *root, t_rndr_str *rndr, int strip_id, t_mlx *textur
 	tex_pos = 0;
 	y = 0;
 	while (y < rndr->walltoppixel)
-		my_mlx_pixel_put(&root->mlx_img, strip_id, y++, &root->ceilling_color);
+		my_mlx_pixel_put(&root->mlx_img, strip_id, y++, &root->ceiling_color);
 	y = rndr->walltoppixel;
 	while (y < rndr->wallbottompixel)
 	{

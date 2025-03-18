@@ -6,11 +6,11 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:34:29 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 19:42:26 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:00:05 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 t_pos	*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float ystep)
 {
