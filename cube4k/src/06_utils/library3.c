@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   library3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 14:44:45 by abzaiz            #+#    #+#             */
+/*   Updated: 2025/03/19 14:47:08 by abzaiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 int	ft_isdigit(int c)
@@ -5,7 +17,7 @@ int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
-static void	*ft_memchr(const void *s, int c, size_t n)
+static void	*ft_memchr( void *s, int c, size_t n)
 {
 	unsigned char	*ptr;
 	size_t			index;
@@ -23,12 +35,12 @@ static void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr( char *s, int c)
 {
 	return ((char *)ft_memchr(s, c, ft_strlen(s) + 1));
 }
 
-static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
 	size_t	index;
 	size_t	srcsize;
@@ -46,7 +58,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (srcsize);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	size_t	start;
 	size_t	end;

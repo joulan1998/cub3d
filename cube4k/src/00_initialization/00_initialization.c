@@ -1,14 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   00_initialization.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 13:22:12 by abzaiz            #+#    #+#             */
+/*   Updated: 2025/03/19 13:22:30 by abzaiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
-/**
- * @brief Initializes the parameters of the t_params structure.
- *
- * This function sets the initial values for the t_params structure fields.
- * It sets all texture pointers to NULL, floor and ceiling colors to -1,
- * and map dimensions to -1.
- *
- * @param params Pointer to the t_params structure to be initialized.
- */
 void	init_params(t_params *params)
 {
 	params->map = NULL;

@@ -11,22 +11,27 @@ HEADERS_DIR = ./headers
 SRC_DIR = ./src
 OBJ_DIR = ./obj
 
-CFLAGS = -g #-fsanitize=address #-Wall -Wextra -Werror 
+CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror 
 HFLAGS = -I$(HEADERS_DIR)
 
-NAME = cub3d
+NAME = cub3D
 
 HEADERS =  $(HEADERS_DIR)/cub3d.h
 SOURCES =  $(SRC_DIR)/00_initialization/00_initialization.c \
            $(SRC_DIR)/01_parsing/parsing_map_colors.c \
-           $(SRC_DIR)/01_parsing/parsing_map_utils.c \
            $(SRC_DIR)/01_parsing/parsing_map.c \
-           $(SRC_DIR)/01_parsing/start_parsing.c \
+           $(SRC_DIR)/01_parsing/parsing_map_utils.c \
+           $(SRC_DIR)/01_parsing/parsing_map_validation_utils.c \
+           $(SRC_DIR)/01_parsing/parsing_map_validation.c \
+           $(SRC_DIR)/01_parsing/parsing_map_textures.c \
+           $(SRC_DIR)/01_parsing/parser_utils.c \
+           $(SRC_DIR)/01_parsing/parser.c \
            $(SRC_DIR)/06_utils/library1.c \
            $(SRC_DIR)/06_utils/library2.c \
            $(SRC_DIR)/06_utils/library3.c \
            $(SRC_DIR)/06_utils/library4.c \
            $(SRC_DIR)/06_utils/split.c \
+           $(SRC_DIR)/06_utils/splitTwo.c \
            $(SRC_DIR)/06_utils/printing_utils.c \
            $(SRC_DIR)/06_utils/file_utils.c \
            $(SRC_DIR)/06_utils/memory_utils.c \

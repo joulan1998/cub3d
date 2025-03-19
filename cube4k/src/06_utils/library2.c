@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   library2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 14:44:34 by abzaiz            #+#    #+#             */
+/*   Updated: 2025/03/19 14:46:47 by abzaiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
@@ -48,7 +60,7 @@ char	*ft_strdup(char *s1)
 	return (copy);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len1;
@@ -74,17 +86,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-size_t arr_len(char **arr)
+size_t	arr_len(char **arr)
 {
-	size_t len;
+	size_t	len;
 
+	if (!arr)
+		return (0);
 	len = 0;
 	while (arr[len])
 		len++;
 	return (len);
 }
 
-int	ft_atoi(const char *s)
+int	ft_atoi(char *s)
 {
 	long	result;
 
@@ -106,8 +120,8 @@ int	ft_atoi(const char *s)
 			return (-1);
 		s++;
 	}
-	// while (*s == ' ' || (*s >= 9 && *s <= 13))
-	// 	s++;
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
+		s++;
 	if (*s)
 		return (-1);
 	return ((int)result);

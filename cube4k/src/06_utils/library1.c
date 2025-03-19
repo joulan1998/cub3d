@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   library1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 14:44:27 by abzaiz            #+#    #+#             */
+/*   Updated: 2025/03/19 14:45:48 by abzaiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen( char *s)
 {
 	size_t	result;
 
@@ -10,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (result);
 }
 
-int	ft_strcmp(const char *str1, const char *str2)
+int	ft_strcmp(char *str1, char *str2)
 {
 	size_t			i;
 	unsigned char	*s1;
@@ -26,7 +38,7 @@ int	ft_strcmp(const char *str1, const char *str2)
 	return (s1[i] - s2[i]);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	if (n <= 0)
 		return (0);
@@ -41,7 +53,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr( char *s, int c)
 {
 	char	*result;
 

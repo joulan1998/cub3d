@@ -1,84 +1,84 @@
-//parsing_map_colors.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map_colors.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 13:36:58 by abzaiz            #+#    #+#             */
+/*   Updated: 2025/03/19 14:39:15 by abzaiz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
-static int count_commas(char *line)
+bool	parse_color_param(t_params *params, t_tracker *tracker,
+	char **splited_line, bool is_floor)
 {
-    int i;
-    int count;
-
-    i = 0;
-    count = 0;
-    while (line[i])
-    {
-        if (line[i] == ',')
-            count++;
-        i++;
-    }
-    return (count);
+	if (is_floor)
+	{
+		if (tracker->floor_tracker)
+			return (tracker->found_duplicate = true, false);
+		tracker->floor_tracker = true;
+		params->floor_color = parse_color(splited_line);
+	}
+	else
+	{
+		if (tracker->ceiling_tracker)
+			return (tracker->found_duplicate = true, false);
+		tracker->ceiling_tracker = true;
+		params->ceiling_color = parse_color(splited_line);
+	}
+	return (true);
 }
 
-/**
- * @brief Converts an array of RGB string values to an ARGB integer.
- *
- * This function takes an array of strings representing RGB values and converts them to an integer
- * in the ARGB format. The alpha value is set to 255 (fully opaque).
- *
- * @param rgb An array of strings representing the RGB values. The array must contain exactly 3 elements.
- * @param splited_line An array of strings representing the split line (not used in this function).
- * @return The ARGB integer value if the conversion is successful, or -1 if there is an error.
- *
- * @note The function checks if the RGB values are within the valid range (0-255). If the array does not
- *       contain exactly 3 elements or if any value is out of range, an error message is printed and -1 is returned.
- */
-static int convert_rgb(char **rgb, char **splited_line)
+static int	count_commas(char *line)
 {
-    int r, g, b;
+	int	i;
+	int	count;
 
-    if (arr_len(rgb) != 3)
-        return (/*print_message(PARSING_ERROR, RGB_ERROR),*/ -1);
-    r = ft_atoi(rgb[0]);
-    g = ft_atoi(rgb[1]);
-    b = ft_atoi(rgb[2]);
-    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-        return (/*print_message(PARSING_ERROR, RGB_ERROR),*/ -1);
-    return (r << 24 | g << 16 | b << 8 | 255);
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
-/**
- * @brief Parses a color from a given line.
- *
- * This function takes a line that is expected to contain RGB color values
- * separated by commas, trims any newline characters, splits the line into
- * individual RGB components, and converts these components into a single
- * integer color value.
- *
- * @param splited_line A double pointer to the line containing the RGB values.
- *                     The line is expected to be split into tokens, where the
- *                     second token contains the RGB values.
- * 
- * @return The integer representation of the color if successful, or -1 if an
- *         error occurs. Possible errors include:
- *         - Incorrect number of commas in the line.
- *         - Failure to split the line into RGB components.
- *         - Failure to convert the RGB components into a color.
- */
-int parse_color(char **splited_line)
+static int	convert_rgb(char **rgb, char **splited_line)
 {
-    char **rgb;
-    int  color;
-    char *trimmed_line;
-    int commas_counter;
+	int	r;
+	int	g;
+	int	b;
 
-    trimmed_line = ft_strtrim(splited_line[1], "\n"); // Trim newline from RGB string
-    commas_counter = count_commas(trimmed_line);
-    if (commas_counter != 2) // Check for exactly 2 commas
-        return (/*print_message(PARSING_ERROR, RGB_ERROR),*/ -1);
-    rgb = ft_split(trimmed_line, ','); // Split by commas
-    if (!rgb)
-        return (print_message(PARSING_ERROR, SPLIT_FAILED), -1);
-    
-    color = convert_rgb(rgb, splited_line);
-    free_strings(rgb);
-    free(trimmed_line);
-    return (color);
+	if (arr_len(rgb) != 3)
+		return (-1);
+	r = ft_atoi(rgb[0]);
+	g = ft_atoi(rgb[1]);
+	b = ft_atoi(rgb[2]);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (-1);
+	return (r << 24 | g << 16 | b << 8 | 255);
+}
+
+int	parse_color(char **splited_line)
+{
+	char	**rgb;
+	char	*trimmed_line;
+	int		color;
+
+	color = 0;
+	if (count_commas(splited_line[1]) != 2)
+		return (print_message(PARSING_ERROR, RGB_ERROR), -1);
+	trimmed_line = ft_strtrim(splited_line[1], "\n");
+	rgb = ft_split(trimmed_line, ',');
+	if (!rgb)
+		return (print_message(PARSING_ERROR, SPLIT_FAILED), -1);
+	color = convert_rgb(rgb, splited_line);
+	free_strings(rgb);
+	free(trimmed_line);
+	return (color);
 }
