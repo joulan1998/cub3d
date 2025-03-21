@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:16:25 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 15:02:43 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:08:04 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 void	initialize_data(t_root *root, t_params *params, t_player *player)
 {
-	if (!params || !player || !player)
+	if (!params || !player || !root)
 		return ;
 	root->player = player;
 	root->mlx = mlx_init();
 	root->map = params->map; // this might not work, so we need a new function to move it from there to here
-	// root->map_h = 7;
-	root->map_h = params->map_height;
-	root->map_w = params->map_width; // set it to the actual function
-	printf("the win_h is %zu\n", params->map_width);
-	// root->map_w = 33; // set it to the actual function 
+	root->map_h = 7;
+	// root->map_h = params->map_height;
+	// root->map_w = params->map_width; // set it to the actual function
+	root->map_w = 33; // set it to the actual function 
+	printf("the win_h is %zu\n", root->map_w);
 	root->win_w = root->map_w * TILE_SIZE; // might become problematic if we give it a big map
 	root->win_h = root->map_h * TILE_SIZE;
 	root->floor_color = params->floor_color; 

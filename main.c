@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 14:54:02 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:19:59 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	check_wall(int y, int x, char **map)
 	return ((map[y][x] == WALL));
 }
 
-void	set_player(t_player *p)
+int	set_player(t_player *p)
 {
 	p->player_x = (int *)malloc(sizeof(int));
 	p->player_y = (int *)malloc(sizeof(int));
 	if (!p || !p->player_x || !p->player_y)
 	{
-		puts("error allocation!");
-		exit(1);
+		ft_err("error allocation!", 1);
+		return (1);
 	}
 	p->walkspeed = 100;
 	p->turnspeed = 45 * (M_PI / 180);
@@ -38,6 +38,7 @@ void	set_player(t_player *p)
 	p->turndir = 0;
 	p->walkdir = 0;
 	p->rot_angl = M_PI / 1;
+	return (0);
 }
 
 bool	init_and_parse(t_params **params, char *filepath)
@@ -61,6 +62,8 @@ int	main(int argc, char **argv)
 	t_player	*player;
 	t_root		*root;
 
+	atexit(f);
+	
 	if (argc != 2)
 		return (printf(INVALID_NBR_ARGS), EXIT_FAILURE);
 	if (init_and_parse(&params, argv[1]) == false)
@@ -69,11 +72,13 @@ int	main(int argc, char **argv)
 	root = malloc(sizeof (t_root));
 	if (!player || !root)
 		printf("allocation error\n");
-	set_player(player);
+	if (set_player(player))
+		return(free(root), free (player), 1);
 	initialize_data(root, params, player);
-	//free_params(params);
+	free_params(params);
 	update (&root);
 	mlx_key_hook(root->win, move_player, root);
+	// exit(5);
 	mlx_loop(root->mlx);
 	return (0);
 }

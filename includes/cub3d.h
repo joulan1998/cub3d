@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 14:35:00 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:34:45 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,7 +289,7 @@ void		render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
 void		mini_map(t_root **root);
 int			count_lines(char **map);
 t_pos		*cal_v_d(t_root *root, float angl, t_compass *cmps);
-void		cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
+int		cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
 t_pos		*create_pos(float x, float y);
 float		normalizeangle(float angle);
 int			distance_to_wall(float x1, float y1, float x2, float y2);
@@ -301,5 +301,6 @@ int			get_texture_pixel(t_mlx *texture, int tex_x, int tex_y);
 int			load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture);
 t_pos		*return_pos_h(t_root *root, t_compass *cmps, t_pos *dist, float s);
 t_pos		*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float s);
+int			ft_err(char *msg, int to_return);
 
 #endif

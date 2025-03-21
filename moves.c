@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 16:10:19 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:07:16 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,21 @@ void	move_left(t_root *root)
 	root->player->turndir = -1;
 }
 
+void free_map(char **map, int height)
+{
+	int i = 0;
+	while (i > height)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+void free_root(t_root *root)
+{
+	free_map(root->map, root->map_h);
+}
+
 int	move_player(int keycode, t_root	*root)
 {
 	if (keycode == 53)
@@ -87,8 +102,10 @@ int	move_player(int keycode, t_root	*root)
 		free(root->player->player_x);
 		free(root->player->player_y);
 		free(root->player);
-		free(root->map);
+		// free(root->map);
+		printf(">>>>>>>> %p\n", &root->map[0]);
 		free(root->mlx_img.img);
+		free_root(root);
 		exit (111);
 	}
 	else

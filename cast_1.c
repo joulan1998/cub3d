@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 19:38:29 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:34:13 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ t_i_infos	*create_info(t_root *root, float ang, bool ver)
 	return (result);
 }
 
-void	cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps)
+int	cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps)
 {
+	if (!inf || !cmps)
+	{
+		x = NULL;
+		y = NULL;
+		return (1);
+	}
 	if (inf->ver)
 	{
 		*x = floor((inf->p_x / TILE_SIZE)) * TILE_SIZE;
@@ -59,6 +65,7 @@ void	cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps)
 	}
 	free(inf);
 	free(cmps);
+	return (0);
 }
 
 t_pos	*cal_v_d(t_root *root, float an, t_compass *cmps)
@@ -71,6 +78,11 @@ t_pos	*cal_v_d(t_root *root, float an, t_compass *cmps)
 	cal_intcep(&to_chek->x_pos, &to_chek->y_pos,
 		create_info(root, an, true),
 		create_compass(0, cmps->f_d, cmps->f_r, 0));
+	if (!to_chek->x_pos && !to_chek->y_pos)
+	{
+		ft_err("error allocation\n", 1);
+		return (NULL);
+	}
 	ystep = TILE_SIZE * tan(an);
 	if ((cmps->f_u && ystep > 0) || (cmps->f_d && ystep < 0))
 		ystep *= -1;

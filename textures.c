@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:17:01 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/17 16:17:01 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:49:09 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@ int	load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture)
 		(mlx, texture_path, &texture->width, &texture->height);
 	if (!texture->img)
 	{
-		printf("Error: Failed to load texture from %s\n", texture_path);
-		return (0);
+		ft_err("Error: Failed to load texture from ", 1);
+		ft_err(texture_path, 1);
+		ft_err("\n", 1);
+		return (1);
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
 			&texture->line_length, &texture->endian);
 	if (!texture->addr)
 	{
-		printf("Error: Failed to get texture data address\n");
+		ft_err("Error: Failed to get texture data address\n", 0);
 		mlx_destroy_image(mlx, texture->img);
-		return (0);
+		return (1);
 	}
 	return (1);
 }
