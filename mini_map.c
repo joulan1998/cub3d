@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:41:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 14:35:19 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 12:54:48 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	render_map_mini(t_root *root)
 	while (++y < root->map_h)
 	{
 		x = -1;
-		while (++x < root->map_w)
+		// while (++x < root->map_w)
+		while (++x < ft_strlen1(root->map[y]))
 		{
 			if (root->map[y][x] == WALL)
 				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
@@ -66,5 +67,5 @@ void	mini_map(t_root **root)
 {
 	render_map_mini(*root);
 	render_dir_mini(*root);
-	mini_cast(*root, ((*root)->map_w * TILE_SIZE) / WALL_STRIPE);
+	// mini_cast(*root, ((*root)->map_w * TILE_SIZE) / WALL_STRIPE);
 }

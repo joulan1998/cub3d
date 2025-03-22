@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 15:34:45 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 13:35:39 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,6 @@ int			is_number(char *str);
 int			ft_atoi(const char *str);
 void		parsing(t_root *root);
 void		initialize_data(t_root *root, t_params *params, t_player *player);
-char		**reading_map(int fd);
 int			move_player(int keycode, t_root *root);
 int			**map_handling(int map[MAP_HEIGHT][MAP_WIDTH]);
 void		draw_squar(t_root *root, int y, int x, int color);
@@ -302,5 +301,7 @@ int			load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture);
 t_pos		*return_pos_h(t_root *root, t_compass *cmps, t_pos *dist, float s);
 t_pos		*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float s);
 int			ft_err(char *msg, int to_return);
+void free_map(char ***map, int height);
+void immegrate_map(char ***to, char ***from);
 
 #endif

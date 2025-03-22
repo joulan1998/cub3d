@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 17:19:59 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:41:32 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	set_player(t_player *p)
 		ft_err("error allocation!", 1);
 		return (1);
 	}
+	// printf("######## >>> %p\n", &p->player_x);
 	p->walkspeed = 100;
 	p->turnspeed = 45 * (M_PI / 180);
 	*p->player_x = 0;
@@ -75,7 +76,7 @@ int	main(int argc, char **argv)
 	if (set_player(player))
 		return(free(root), free (player), 1);
 	initialize_data(root, params, player);
-	free_params(params);
+	// free_params(params);
 	update (&root);
 	mlx_key_hook(root->win, move_player, root);
 	// exit(5);

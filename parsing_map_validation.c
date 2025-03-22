@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:29:05 by abzaiz            #+#    #+#             */
-/*   Updated: 2025/03/19 16:18:55 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 13:23:51 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ static bool	check_segment(t_params *params, int i,
 {
 	size_t	j;
 
-	j = start;
-	while (j < len_curr && j < start)
-		j++;
+	j = start - 1;
 	while (j < len_curr)
 	{
 		if (params->map[i][j] == '0'
@@ -118,6 +116,6 @@ bool	is_valid_map(t_params *params)
 	if (validate_map_content(params) == false)
 		return (print_message(PARSING_ERROR, INVALID_MAP_CONTENT), false);
 	if (check_extended_zeros(params) == false)
-		return (print_message(PARSING_ERROR, "INVALID_MAP_CONTENT"), false);
+		return (print_message(PARSING_ERROR, INVALID_MAP_CONTENT), false);
 	return (true);
 }

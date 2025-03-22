@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 17:07:16 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:29:41 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,19 @@ void	move_left(t_root *root)
 	root->player->turndir = -1;
 }
 
-void free_map(char **map, int height)
+void free_map(char ***map, int height)
 {
 	int i = 0;
-	while (i > height)
+	while (i < height)
 	{
-		free(map[i]);
+		free((*map)[i]);
 		i++;
 	}
-	free(map);
+	free(*map);
 }
-void free_root(t_root *root)
+void free_root(t_root **root)
 {
-	free_map(root->map, root->map_h);
+	free_map((*root)->map, (*root)->map_h);
 }
 
 int	move_player(int keycode, t_root	*root)
@@ -102,10 +102,12 @@ int	move_player(int keycode, t_root	*root)
 		free(root->player->player_x);
 		free(root->player->player_y);
 		free(root->player);
+		// free_map(&root->map, root->map_h);
 		// free(root->map);
-		printf(">>>>>>>> %p\n", &root->map[0]);
-		free(root->mlx_img.img);
-		free_root(root);
+		// free(root);
+		// printf(">>>>>>>> %p\n", &root->map[0]);
+		// free_root(&root);
+		// free(root->mlx_img.img);
 		exit (111);
 	}
 	else
