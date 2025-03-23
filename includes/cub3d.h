@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 13:35:39 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:41:27 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define CUB3D_H
 
 # include <libc.h>
-# include <mlx.h>
+// # include <mlx.h>
+# include "mlx.h"
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>

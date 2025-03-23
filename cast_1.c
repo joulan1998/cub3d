@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:06:50 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 16:24:38 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:48:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ t_pos	*cal_v_d(t_root *root, float an, t_compass *cmps)
 	t_pos	*to_chek;
 
 	to_chek = create_pos(0, 0);
-	cal_intcep(&to_chek->x_pos, &to_chek->y_pos, create_info(root, an, true), create_compass(0, cmps->f_d, cmps->f_r, 0));
+	cal_intcep(&to_chek->x_pos, &to_chek->y_pos,
+		create_info(root, an, true),
+		create_compass(0, cmps->f_d, cmps->f_r, 0));
 	if (!to_chek->x_pos && !to_chek->y_pos)
 	{
-		ft_err("allocation\n", 1);
-		to_chek->x_pos = -1;
-		to_chek->y_pos = -1;
+		ft_err("error allocation\n", 1);
 		return (NULL);
 	}
 	ystep = TILE_SIZE * tan(an);

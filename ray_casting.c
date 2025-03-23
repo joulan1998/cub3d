@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:56:47 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/16 15:57:37 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:52:42 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,38 @@ void	draw_line(t_root *root, int end_y, int end_x, int color)
 		end_x++;
 	}
 }
+
+// void draw_line(t_root *root, int end_x, int end_y, int color)
+// {
+//     int start_x = (int)(*(root->player->player_x) * SCALE);
+//     int start_y = (int)(*(root->player->player_y) * SCALE);
+//     int dx = abs(end_x - start_x);
+//     int dy = abs(end_y - start_y);
+//     int sx = (start_x < end_x) ? 1 : -1;
+//     int sy = (start_y < end_y) ? 1 : -1;
+//     int err = dx - dy;
+//     int e2;
+
+//     while (1)
+//     {
+//         // Draw the current pixel
+//         my_mlx_pixel_put(&root->mlx_img, start_x, start_y, color);
+
+//         // Check if we've reached the endpoint
+//         if (start_x == end_x && start_y == end_y)
+//             break;
+
+//         // Calculate the next pixel
+//         e2 = 2 * err;
+//         if (e2 > -dy)
+//         {
+//             err -= dy;
+//             start_x += sx;
+//         }
+//         if (e2 < dx)
+//         {
+//             err += dx;
+//             start_y += sy;
+//         }
+//     }
+// }

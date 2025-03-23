@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 16:23:22 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/23 14:02:12 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	maphaswallat(t_root *root, float y, float x)
 		local_x = 0;
 	if (local_y < 0)
 		local_y = 1;
-	if (local_x >= root->map_w)
-		local_x = root->map_w - 1;
-	if (local_y >= root->map_h)
-		local_y = root->map_h - 1;
+	// if (local_x >= root->map_w)
+	// 	local_x = root->map_w - 1;
+	// if (local_y >= root->map_h)
+	// 	local_y = root->map_h - 1;
 	if (local_x > ft_strlen(root->map[local_y]) - 1)
 		return (0);
 	else
@@ -66,7 +66,7 @@ void	render_map(t_root *root)
 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
 			else if (root->map[y][x] == FLOOR)
 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-			if (root->map[y][x] == PLAYER)
+			else if (root->map[y][x] == PLAYER)
 			{
 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
 				if (prot == 0)

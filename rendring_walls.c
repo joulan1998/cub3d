@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:23:34 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 16:24:17 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:50:11 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,15 @@ void	draw_wall_strip(t_root *root, t_rndr_str *rndr, int strip_id, t_mlx *textur
 	set_tex_x(root, &tex_x, rndr, texture);
 	// tex_step = (float)texture->height / rndr->wallstripeheight;
 	tex_pos = 0;
-	y = 0;
-	// printf(" y ====>>> %d ||||| wal_stripe >>>> %d\n", y, WALL_STRIPE);
-	// printf(" wall stripe ====>>> %d ||||\n", WALL_ST);
-	// if (strip_id == 0)
-	printf(" wall stripe ====>>> %d ||||\n", strip_id);
-		// strip_id = 1;
-	
-	while (y < rndr->walltoppixel)
-		my_mlx_pixel_put(&root->mlx_img, strip_id, y++, root->ceiling_color);
-		// my_mlx_pixel_put(&root->mlx_img, strip_id, y++, BLUE);
+	y = -1;
+	while (y++ < rndr->walltoppixel)
+		my_mlx_pixel_put(&root->mlx_img, strip_id, y, root->ceiling_color);
 	y = rndr->walltoppixel;
 	while (y < rndr->wallbottompixel)
 	{
 		tex_y = (int)tex_pos;
 		if (tex_y >= texture->height)
-			tex_y = texture->height - 1;
+			tex_y = texture->height - 1;// make sur about it  when code clean again
 		color = *(int *)(texture->addr + (int)(tex_y * texture->line_length + tex_x * (texture->bits_per_pixel / 8)));
 		my_mlx_pixel_put(&root->mlx_img, strip_id, y++, color);
 		// tex_pos += tex_step;
@@ -103,7 +96,6 @@ void	draw_wall_strip(t_root *root, t_rndr_str *rndr, int strip_id, t_mlx *textur
 	y = rndr->wallbottompixel;
 	while (y < root->win_h)
 		my_mlx_pixel_put(&root->mlx_img, strip_id, y++, root->floor_color);
-		// my_mlx_pixel_put(&root->mlx_img, strip_id, y++, GREEN);
 }
 
 void	render_wall(t_root *root, t_ray *ray, int strip_id, float anglee)
