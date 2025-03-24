@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/23 14:02:12 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/23 15:26:45 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,47 @@ void	local_pro(t_root **root, int x, int y)
 {
 	*((*root)->player->player_y) = (y * TILE_SIZE) + 20;
 	*((*root)->player->player_x) = (x * TILE_SIZE) + 20;
+	// (*root)->p_sym = (*root)->map[y][x];
 }
+
+bool	is_player(char c)
+{
+	return((c == 'N') || (c == 'S') || (c == 'E') || (c == 'W'));
+}
+
+// void	render_map(t_root *root)
+// {
+// 	int			y;
+// 	int			x;
+// 	static int	prot;
+
+// 	y = -1;
+// 	while (++y < root->map_h)
+// 	{
+// 		x = -1;
+// 		while (++x < ft_strlen(root->map[y]))
+// 		{
+// 			if (root->map[y][x] == WALL)
+// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
+// 			else if (root->map[y][x] == FLOOR)
+// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
+// 			else if (root->map[y][x] == PLAYER)
+// 			{
+// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
+// 				if (prot == 0)
+// 				{
+// 					local_pro(&root, x, y);
+// 					prot = 1;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 void	render_map(t_root *root)
 {
 	int			y;
 	int			x;
-	static int	prot;
 
 	y = -1;
 	while (++y < root->map_h)
@@ -62,19 +96,13 @@ void	render_map(t_root *root)
 		x = -1;
 		while (++x < ft_strlen(root->map[y]))
 		{
-			if (root->map[y][x] == WALL)
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
-			else if (root->map[y][x] == FLOOR)
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-			else if (root->map[y][x] == PLAYER)
-			{
-				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-				if (prot == 0)
+				if (is_player(root->map[y][x]) == true)
 				{
+					// puts("klkklkkklkklklkkkkklkl");
 					local_pro(&root, x, y);
-					prot = 1;
 				}
-			}
 		}
 	}
+	// puts("djdjskdjksdjkdjsdjksdjskdjksjdskdjksddjksds");
+	// exit(9);
 }

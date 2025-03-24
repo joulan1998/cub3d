@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:17:01 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 15:49:09 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:26:03 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture)
 	return (1);
 }
 
-int	get_texture_pixel(t_mlx *texture, int tex_x, int tex_y)
+// int	*get_texture_pixel(t_mlx *texture, int tex_x, int tex_y) 
+int	get_texture_pixel(t_mlx *texture, int tex_x, int tex_y) 
 {
 	int	pixel_index;
 

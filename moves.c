@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:34:35 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 14:29:41 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/23 15:24:02 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	move_up(t_root *root)
 		root->map[(int)cur_pos->y_pos][(int)cur_pos->x_pos] = FLOOR;
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
-		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
+		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER; //elso updating the player popssibilitiess
+		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = root->p_sym;
 		free(cur_pos);
 	}
 }
@@ -63,7 +64,8 @@ void	move_down(t_root	*root)
 		root->map[(int) cur_pos->y_pos][(int) cur_pos->x_pos] = FLOOR;
 		*root->player->player_y = new_y;
 		*root->player->player_x = new_x;
-		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;
+		// root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = PLAYER;       player upate for 4 directin
+		root->map[(int)(new_y / TILE_SIZE)][(int)(new_x / TILE_SIZE)] = root->p_sym;
 		free(cur_pos);
 	}
 }
@@ -88,10 +90,10 @@ void free_map(char ***map, int height)
 	}
 	free(*map);
 }
-void free_root(t_root **root)
-{
-	free_map((*root)->map, (*root)->map_h);
-}
+// void free_root(t_root **root)
+// {
+// 	free_map((*root)->map, (*root)->map_h);
+// }
 
 int	move_player(int keycode, t_root	*root)
 {

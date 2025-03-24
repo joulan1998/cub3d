@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 17:41:27 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:25:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,8 @@ typedef struct s_rndr_str
 {
 	float	perp_dist;
 	float	distanceprojwall;
-	float	projwallheight;
+	// float	projwallheight;
+	int		projwallheight;
 	int		wallstripeheight;
 	int		wallbottompixel;
 	int		walltoppixel;
@@ -240,6 +241,7 @@ typedef struct s_root
 	void		*win;
 	t_mlx		mlx_img;
 	char		**map;
+	char		p_sym;
 	int			map_h;
 	int			win_w;
 	int			win_h;
@@ -304,5 +306,6 @@ t_pos		*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float s);
 int			ft_err(char *msg, int to_return);
 void free_map(char ***map, int height);
 void immegrate_map(char ***to, char ***from);
+bool	is_player(char c);
 
 #endif

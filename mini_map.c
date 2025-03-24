@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:41:46 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/22 12:54:48 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:34:06 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ void	render_map_mini(t_root *root)
 	while (++y < root->map_h)
 	{
 		x = -1;
-		// while (++x < root->map_w)
 		while (++x < ft_strlen1(root->map[y]))
 		{
 			if (root->map[y][x] == WALL)
 				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
-			else if (root->map[y][x] == FLOOR)
+			// else if (root->map[y][x] == FLOOR)
+			else
 				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-			else if (root->map[y][x] == PLAYER)
-			{
-				sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-				if (pro == 0)
-				{
-					local_prot(&root, x, y);
-					pro = 1;
-				}
-			}
+			// // else if (root->map[y][x] == PLAYER)
+			// else if (is_player(root->map[y][x]))
+			// {
+			// 	sqr_mini(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
+			// 	if (pro == 0)
+			// 	{
+			// 		// local_prot(&root, x, y);
+			// 		pro = 1;
+			// 	}
+			// }
 		}
 	}
 }
