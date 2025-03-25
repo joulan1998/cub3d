@@ -6,11 +6,29 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:16:25 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/23 13:59:13 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:18:27 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+int	find_the_longest_line(char **map)
+{
+	int		i;
+	size_t	max;
+
+	i = 0;
+	if (!map)
+		return (0);
+	max = ft_strlen1(map[0]);
+	while (map[i])
+	{
+		if (ft_strlen1(map[i]) > max)
+			max = ft_strlen1(map[i]);
+		i++;
+	}
+	return (max);
+}
 
 void	initialize_data(t_root *root, t_params *params, t_player *player)
 {
@@ -18,11 +36,10 @@ void	initialize_data(t_root *root, t_params *params, t_player *player)
 		return ;
 	root->player = player;
 	root->mlx = mlx_init();
-	root->map = params->map; // this might not work, so we need a new function to move it from there to here
+	root->map = params->map;
 	immegrate_map(&root->map, &params->map);
 	root->map_h = params->map_height;
-	// root->map_w = params->map_width; // set it to the actual function
-	root->map_w = 33; // set it to the actual function 
+	root->map_w = find_the_longest_line(params->map);
 	root->win_w = root->map_w * TILE_SIZE;
 	root->win_h = root->map_h * TILE_SIZE;
 	root->floor_color = params->floor_color;

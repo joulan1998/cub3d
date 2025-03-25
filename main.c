@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 17:41:32 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:30:29 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	set_player(t_player *p)
 		ft_err("error allocation!", 1);
 		return (1);
 	}
-	// printf("######## >>> %p\n", &p->player_x);
 	p->walkspeed = 100;
 	p->turnspeed = 45 * (M_PI / 180);
 	*p->player_x = 0;
@@ -53,7 +52,7 @@ bool	init_and_parse(t_params **params, char *filepath)
 		return (print_message(PARSING_ERROR, MALLOC_ERROR), false);
 	init_params(*params);
 	if (parser(*params, filepath) == false)
-		return (free_params(*params), *params = NULL, false);
+		return (*params = NULL, false);
 	return (true);
 }
 
@@ -64,7 +63,6 @@ int	main(int argc, char **argv)
 	t_root		*root;
 
 	atexit(f);
-	
 	if (argc != 2)
 		return (printf(INVALID_NBR_ARGS), EXIT_FAILURE);
 	if (init_and_parse(&params, argv[1]) == false)
@@ -72,14 +70,14 @@ int	main(int argc, char **argv)
 	player = malloc(sizeof (t_player));
 	root = malloc(sizeof (t_root));
 	if (!player || !root)
-		printf("allocation error\n");
+		ft_print("allocation error\n");
 	if (set_player(player))
-		return(free(root), free (player), 1);
-	initialize_data(root, params, player);
-	// free_params(params);
+		return (free(root), free(player), 1);
+	initialize_data (root, params, player);
+	render_map(root);
 	update (&root);
 	mlx_key_hook(root->win, move_player, root);
-	// exit(5);
+	mlx_hook(root->win, 17, (1L << 0), ft_exit, &root);
 	mlx_loop(root->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 11:28:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/23 15:26:45 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/24 22:39:49 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ int	maphaswallat(t_root *root, float y, float x)
 		local_x = 0;
 	if (local_y < 0)
 		local_y = 1;
-	// if (local_x >= root->map_w)
-	// 	local_x = root->map_w - 1;
-	// if (local_y >= root->map_h)
-	// 	local_y = root->map_h - 1;
 	if (local_x > ft_strlen(root->map[local_y]) - 1)
 		return (0);
 	else
@@ -48,61 +44,31 @@ void	local_pro(t_root **root, int x, int y)
 {
 	*((*root)->player->player_y) = (y * TILE_SIZE) + 20;
 	*((*root)->player->player_x) = (x * TILE_SIZE) + 20;
-	// (*root)->p_sym = (*root)->map[y][x];
+	(*root)->p_sym = (*root)->map[y][x];
 }
 
 bool	is_player(char c)
 {
-	return((c == 'N') || (c == 'S') || (c == 'E') || (c == 'W'));
+	return ((c == 'N') || (c == 'S') || (c == 'E') || (c == 'W'));
 }
-
-// void	render_map(t_root *root)
-// {
-// 	int			y;
-// 	int			x;
-// 	static int	prot;
-
-// 	y = -1;
-// 	while (++y < root->map_h)
-// 	{
-// 		x = -1;
-// 		while (++x < ft_strlen(root->map[y]))
-// 		{
-// 			if (root->map[y][x] == WALL)
-// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, WHITE);
-// 			else if (root->map[y][x] == FLOOR)
-// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-// 			else if (root->map[y][x] == PLAYER)
-// 			{
-// 				draw_squar(root, y * TILE_SIZE, x * TILE_SIZE, BLACK);
-// 				if (prot == 0)
-// 				{
-// 					local_pro(&root, x, y);
-// 					prot = 1;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 
 void	render_map(t_root *root)
 {
 	int			y;
 	int			x;
 
-	y = -1;
-	while (++y < root->map_h)
+	y = 0;
+	while (y++ < root->map_h)
 	{
 		x = -1;
 		while (++x < ft_strlen(root->map[y]))
 		{
-				if (is_player(root->map[y][x]) == true)
-				{
-					// puts("klkklkkklkklklkkkkklkl");
-					local_pro(&root, x, y);
-				}
+			if (is_player(root->map[y][x]) == true)
+			{
+				*(root->player->player_y) = (y * TILE_SIZE) + 20;
+				*(root->player->player_x) = (x * TILE_SIZE) + 20;
+				root->p_sym = root->map[y][x];
+			}
 		}
 	}
-	// puts("djdjskdjksdjkdjsdjksdjskdjksjdskdjksddjksds");
-	// exit(9);
 }

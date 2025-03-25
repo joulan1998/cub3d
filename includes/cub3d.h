@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/24 14:25:29 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:32:26 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ char		**ft_split(char *s, char c);
 // * get_next_line
 char		*get_next_line(int fd);
 // * memory utils
-void		free_params(t_params *params);
 void		free_strings(char **strings);
 // * list utils
 t_map		*ft_createlst(char *line);
@@ -291,7 +290,7 @@ void		render_wall(t_root *root, t_ray *ray, int strip_id, float anglee);
 void		mini_map(t_root **root);
 int			count_lines(char **map);
 t_pos		*cal_v_d(t_root *root, float angl, t_compass *cmps);
-int		cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
+int			cal_intcep(float *x, float *y, t_i_infos *inf, t_compass *cmps);
 t_pos		*create_pos(float x, float y);
 float		normalizeangle(float angle);
 int			distance_to_wall(float x1, float y1, float x2, float y2);
@@ -304,8 +303,10 @@ int			load_xpm_texture(void *mlx, char *texture_path, t_mlx *texture);
 t_pos		*return_pos_h(t_root *root, t_compass *cmps, t_pos *dist, float s);
 t_pos		*return_pos_v(t_root *root, t_compass *cmps, t_pos *dist, float s);
 int			ft_err(char *msg, int to_return);
-void free_map(char ***map, int height);
-void immegrate_map(char ***to, char ***from);
-bool	is_player(char c);
+void		ft_print(char *msg);
+void		free_map(char **map, int height);
+void		immegrate_map(char ***to, char ***from);
+bool		is_player(char c);
+int			ft_exit(t_root *root);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:21:04 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/23 22:05:21 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:39:26 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,19 @@ void	cast_allrays(t_root *root, int rays_nbr)
 {
 	int		i;
 	float	angl;
-	t_ray	rays[rays_nbr];
+	t_ray	*ray;
 	float	fov;
 
 	fov = (60 *(M_PI / 180));
+	ray = create_ray(M_PI);
 	angl = root->player->rot_angl - (fov / 2);
 	i = 0;
 	while (i < rays_nbr)
 	{
-		cast_ray(root, &rays[i], angl);
-		render_wall(root, &rays[i], i, angl);
+		cast_ray(root, ray, angl);
+		render_wall(root, ray, i, angl);
 		angl += fov / rays_nbr;
 		i++;
 	}
+	free(ray);
 }
