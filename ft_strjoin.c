@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 21:02:29 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/21 17:43:59 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:56:26 by abzaiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
 static char	*fill(char const	*s1, char const	*s2)
 {

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 17:44:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/01/11 09:34:39 by ael-garr         ###   ########.fr       */
+/*   Created: 2023/11/03 14:28:17 by ael-garr          #+#    #+#             */
+/*   Updated: 2025/03/26 10:56:22 by abzaiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "includes/cub3d.h"
 
-int	ft_isdigit(int c)
+size_t	ft_strlen(const char *s)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
+	size_t	i;
+
+	if (!s)
 		return (0);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

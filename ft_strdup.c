@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printing_utils.c                                   :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abzaiz <abzaiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 14:49:10 by abzaiz            #+#    #+#             */
-/*   Updated: 2025/03/19 14:49:41 by abzaiz           ###   ########.fr       */
+/*   Created: 2023/11/13 11:11:17 by ael-garr          #+#    #+#             */
+/*   Updated: 2025/03/26 10:56:49 by abzaiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "includes/cub3d.h"
 
-void	print_message(char *message, char *detail)
+char	*ft_strdup(const char *s1)
 {
-	printf("%s: %s\n", message, detail);
+	char	*to_dup;
+	char	*result;
+	int		len;
+	int		i;
+
+	if (!s1)
+		return (NULL);
+	to_dup = (char *)s1;
+	len = ft_strlen(to_dup);
+	result = (char *)malloc((len * sizeof(char)) + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (to_dup[i] != '\0')
+	{
+		result[i] = to_dup[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }
