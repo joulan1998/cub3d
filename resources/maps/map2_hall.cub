@@ -1,7 +1,7 @@
-EA resources/textures/wall_r.xpm
-NO resources/textures/wall_l.xpm
-SO resources/textures/wall_d.xpm
-WE resources/textures/wall_u.xpm
+EA resources/textures/wall.xpm
+NO resources/textures/wall.xpm
+SO resources/textures/wall.xpm
+WE resources/textures/wall.xpm
 
 
 F 0,255,0
