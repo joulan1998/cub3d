@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:43:56 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/25 14:32:26 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:47:43 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,5 +308,7 @@ void		free_map(char **map, int height);
 void		immegrate_map(char ***to, char ***from);
 bool		is_player(char c);
 int			ft_exit(t_root *root);
+char		find_p_sym(char **map);
+float		set_rota_angle(char dir);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ael-garr <ael-garr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 15:51:12 by ael-garr          #+#    #+#             */
-/*   Updated: 2025/03/25 14:30:29 by ael-garr         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:48:07 by ael-garr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	check_wall(int y, int x, char **map)
 	return ((map[y][x] == WALL));
 }
 
-int	set_player(t_player *p)
+int	set_player(t_player *p, t_params *params)
 {
 	p->player_x = (int *)malloc(sizeof(int));
 	p->player_y = (int *)malloc(sizeof(int));
-	if (!p || !p->player_x || !p->player_y)
+	if (!p || !p->player_x || !p->player_y || !params)
 	{
 		ft_err("error allocation!", 1);
 		return (1);
@@ -37,7 +37,7 @@ int	set_player(t_player *p)
 	*p->player_y = 0;
 	p->turndir = 0;
 	p->walkdir = 0;
-	p->rot_angl = M_PI / 1;
+	p->rot_angl = set_rota_angle(find_p_sym(params->map));
 	return (0);
 }
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	root = malloc(sizeof (t_root));
 	if (!player || !root)
 		ft_print("allocation error\n");
-	if (set_player(player))
+	if (set_player(player, params))
 		return (free(root), free(player), 1);
 	initialize_data (root, params, player);
 	render_map(root);
